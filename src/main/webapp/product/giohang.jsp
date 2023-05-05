@@ -79,6 +79,7 @@
 	Long cartID = (Long) session.getAttribute("cartID");
 	GioHang gioHang = (GioHang) session.getAttribute("gioHang");
 	Map<SanPham, Integer> maps = gioHang.getLists();
+	int tongTien = 0;
 	%>
 
 	<form action="#" method="get">
@@ -92,6 +93,7 @@
 					<hr>
 					<%
 					for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
+						tongTien += entry.getKey().getGiaBan() * entry.getValue();
 					%>
 					<div class="card-body">
 						<div class="d-flex justify-content-between">
@@ -120,7 +122,9 @@
 							</div>
 							<div class="d-flex flex-row align-items-center">
 								<div style="width: 80px;">
-									<h5 class="mb-0"><%=entry.getKey().getGiaBan()%> VND</h5>
+									<h5 class="mb-0"><%=entry.getKey().getGiaBan() * entry.getValue()%>
+										VND
+									</h5>
 								</div>
 								<a href="#!" style="color: #cecece;"><i
 									class="fas fa-trash-alt"></i></a>
@@ -133,7 +137,7 @@
 					%>
 					<div class="d-flex flex-row-reverse">
 						<div class="p-2" style="width: 80px;">
-							<h5 class="mb-0">$1799</h5>
+							<h5 class="mb-0"><%=tongTien %> VND</h5>
 						</div>
 						<div class="p-2">
 							<h5 class="mb-0">Tổng tiền:</h5>
@@ -146,7 +150,7 @@
 						<div class="card-body">
 							<div class="d-flex justify-content-between mb-4">
 								<p class="small mb-2 fs-4">Tổng tiền:</p>
-								<p class="mb-2 fs-4">$4818.00</p>
+								<p class="mb-2 fs-4"><%=tongTien %> VND</p>
 							</div>
 							<div class="d-grid gap-2">
 								<button class="btn btn-primary bg-warning" type="submit">Đến
