@@ -212,5 +212,7 @@ public class SanPhamController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 }
