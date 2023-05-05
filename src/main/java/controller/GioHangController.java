@@ -42,8 +42,8 @@ public class GioHangController extends HttpServlet {
 			themGioHang(request, response);
 		} else if (hanhDong.equals("chi-tiet-gio-hang")) {
 			chiTietGioHang(request, response);
-		} else if (hanhDong.equals("xac-nhan-dat-hang")) {
-//			xacNhanDatHang(request, response);
+		} else if (hanhDong.equals("xoa-sanpham-trong-gio-hang")) {
+			xoaSPTrongGioHang(request, response);
 		} else if (hanhDong.equals("dat-hang-thanh-cong")) {
 //			datHangThanhCong(request, response);
 		} else if (hanhDong.equals("xoa-san-pham")) {
@@ -92,7 +92,7 @@ public class GioHangController extends HttpServlet {
 						System.out.println("giohang th2: " + gioHang.toString());
 						TreeMap<SanPham, Integer> map = gioHang.getLists();
 						gioHang.insertToCart(sanPham, soLuong);
-						
+
 						long cartID = gioHang.getCartID();
 						System.out.println("cartID: " + cartID);
 						httpSession.setAttribute("cartID", cartID);
@@ -103,13 +103,12 @@ public class GioHangController extends HttpServlet {
 
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/sucesscart.jsp");
 			requestDispatcher.forward(request, response);
-		}catch(
+		} catch (
 
-	Exception e)
-	{
-		// TODO: handle exception
-		e.printStackTrace();
-	}
+		Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 	private void chiTietGioHang(HttpServletRequest request, HttpServletResponse response) {
@@ -131,6 +130,36 @@ public class GioHangController extends HttpServlet {
 
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 			requestDispatcher.forward(request, response);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	private void xoaSPTrongGioHang(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			String maSanPham = request.getParameter("maSanPham");
+			System.out.println("maSP: " + maSanPham);
+			HttpSession httpSession = request.getSession();
+			GioHang gioHang = (GioHang) httpSession.getAttribute("gioHang");
+			System.out.println("gioHang: " + gioHang.toString());
+			TreeMap<SanPham, Integer> map = gioHang.getLists();
+			String url = "/product/giohang.jsp";
+
+			for (Map.Entry<SanPham, Integer> entry : map.entrySet()) {
+				if (entry.getKey().getMaSanPham().equals(maSanPham)) {
+					map.remove(entry.getKey());
+					httpSession.setAttribute("gioHang", gioHang);
+					break;
+				}
+			}
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
+			requestDispatcher.forward(request, response);
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

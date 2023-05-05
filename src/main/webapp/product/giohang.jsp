@@ -29,6 +29,10 @@
 
 </head>
 <body>
+	<%
+String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		+ request.getContextPath();
+%>
 
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -111,11 +115,13 @@
 											<label class="fs-6" for="form2Example27">Số lượng:</label>
 										</div>
 										<div class="col-4 ">
-											<input class="form-control fs-6" type="number" min="1"
-												value="<%=entry.getValue()%>" />
+											<input id="giaSanPham" class="form-control fs-6"
+												type="number" min="1" value="<%=entry.getValue()%>" />
 										</div>
 										<div class="col-2 fs-6 mt-1">
-											<span>Xoá</span>
+											<!-- <span>Xoá</span> -->
+											<a
+												href="<%=url%>/gio-hang-controller?hanhDong=xoa-sanpham-trong-gio-hang&maSanPham=<%=entry.getKey().getMaSanPham()%>">Xoá</a>
 										</div>
 									</div>
 								</div>
@@ -137,7 +143,9 @@
 					%>
 					<div class="d-flex flex-row-reverse">
 						<div class="p-2" style="width: 80px;">
-							<h5 class="mb-0"><%=tongTien %> VND</h5>
+							<h5 class="mb-0"><%=tongTien%>
+								VND
+							</h5>
 						</div>
 						<div class="p-2">
 							<h5 class="mb-0">Tổng tiền:</h5>
@@ -150,7 +158,9 @@
 						<div class="card-body">
 							<div class="d-flex justify-content-between mb-4">
 								<p class="small mb-2 fs-4">Tổng tiền:</p>
-								<p class="mb-2 fs-4"><%=tongTien %> VND</p>
+								<p class="mb-2 fs-4"><%=tongTien%>
+									VND
+								</p>
 							</div>
 							<div class="d-grid gap-2">
 								<button class="btn btn-primary bg-warning" type="submit">Đến
