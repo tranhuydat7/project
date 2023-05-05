@@ -109,6 +109,9 @@ a:link, a:visited {
 						<p id="card-text" class="card-text"><%=sanPham.getGiaBan()%>
 							VND
 						</p>
+						<a
+									href="<%=url%>/gio-hang-controller?hanhDong=them-gio-hang&maSanPham=<%=sanPham.getMaSanPham()%>"
+									class="btn bg-success" type="submit">Thêm giỏ hàng</a>
 						<!-- <div class="row justify-content-between">
 							<div class="col-3">
 								<a type="button" href="#" class="btn btn-primary">Mua</a>
