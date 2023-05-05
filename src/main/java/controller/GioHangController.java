@@ -91,7 +91,6 @@ public class GioHangController extends HttpServlet {
 						GioHang gioHang = (GioHang) httpSession.getAttribute("gioHang");
 						System.out.println("giohang th2: " + gioHang.toString());
 						TreeMap<SanPham, Integer> map = gioHang.getLists();
-//						map.put(sanPham, soLuong);
 						gioHang.insertToCart(sanPham, soLuong);
 						
 						long cartID = gioHang.getCartID();
