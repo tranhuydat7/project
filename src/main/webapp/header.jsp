@@ -52,7 +52,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				if (obj != null)
 					khachHang = (KhachHang) obj;
 				if (khachHang == null) {
-				%>f
+				%>
 				<a class="btn btn-primary ms-1 me-1" style="white-space: nowrap;"
 					href="<%=url%>/user/dangnhap.jsp">Đăng nhập</a> <a
 					class="btn btn-primary" style="white-space: nowrap;"
