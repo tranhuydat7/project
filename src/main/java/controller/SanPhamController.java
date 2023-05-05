@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.ChiTietDonHang;
+import model.DanhMuc;
 import model.DonHang;
 import model.KhachHang;
 import model.SanPham;
@@ -16,12 +17,15 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import com.mysql.cj.Session;
 
 import database.ChiTietDonHangDAO;
+import database.DanhMucDAO;
 import database.DonHangDAO;
 import database.KhachHangDAO;
 import database.SanPhamDAO;
@@ -55,13 +59,9 @@ public class SanPhamController extends HttpServlet {
 			xacNhanDatHang(request, response);
 		} else if (hanhDong.equals("dat-hang-thanh-cong")) {
 			datHangThanhCong(request, response);
-		} else if (hanhDong.equals("xoa-san-pham")) {
-//			xoaSanPham(request, response);
-		} else if (hanhDong.equals("search")) {
-//			search(request, response);
-		} else if (hanhDong.equals("list-ma")) {
-//			listMa(request, response);
-		}
+		} else if (hanhDong.equals("danh-muc")) {
+			danhMuc(request, response);
+		} 
 	}
 
 	/**
@@ -207,6 +207,25 @@ public class SanPhamController extends HttpServlet {
 
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 			requestDispatcher.forward(request, response);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	private void danhMuc(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			String tenDanhMuc = request.getParameter("tenDanhMuc");
+			SanPhamDAO sanPhamDAO = new SanPhamDAO();
+			List<SanPham> listSanPham = sanPhamDAO.getSanPhamByDanhMuc(tenDanhMuc);
+
+			request.setAttribute("sanPhamList", listSanPham);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -27,19 +27,19 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="<%=url%>/index-controller">Trang chủ</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Combo
-						giảm giá</a></li>
-				<li class="nav-item dropdown"><a
+					aria-current="page" href="<%=url%>/index-controller">TRANG CHỦ</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=Nam">NAM</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=nu">NỮ</a></li>
+				<!-- <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> Thể loại </a>
-					<ul class="dropdown-menu">
+					data-bs-toggle="dropdown" aria-expanded="false">Nữ </a> -->
+					<!-- <ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="#">Quần jean</a></li>
 						<li><a class="dropdown-item" href="#">Áo thun</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#">Áo sơ mi</a></li>
-					</ul></li>
-				<li class="nav-item"><a class="nav-link disabled">Hết hàng</a>
+					</ul></li> -->
+				<li class="nav-item"><a class="nav-link" href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=treem">TRẺ EM</a>
 				</li>
 			</ul>
 			<form class="d-flex" role="search">
@@ -52,7 +52,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				if (obj != null)
 					khachHang = (KhachHang) obj;
 				if (khachHang == null) {
-				%>
+				%>f
 				<a class="btn btn-primary ms-1 me-1" style="white-space: nowrap;"
 					href="<%=url%>/user/dangnhap.jsp">Đăng nhập</a> <a
 					class="btn btn-primary" style="white-space: nowrap;"
