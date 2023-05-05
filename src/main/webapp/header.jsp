@@ -28,23 +28,29 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
 					aria-current="page" href="<%=url%>/index-controller">TRANG CHỦ</a></li>
-				<li class="nav-item"><a class="nav-link" href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=Nam">NAM</a></li>
-				<li class="nav-item"><a class="nav-link" href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=nu">NỮ</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=Nam">NAM</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=nu">NỮ</a></li>
 				<!-- <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false">Nữ </a> -->
-					<!-- <ul class="dropdown-menu">
+				<!-- <ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="#">Quần jean</a></li>
 						<li><a class="dropdown-item" href="#">Áo thun</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#">Áo sơ mi</a></li>
 					</ul></li> -->
-				<li class="nav-item"><a class="nav-link" href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=treem">TRẺ EM</a>
-				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=treem">TRẺ
+						EM</a></li>
 			</ul>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search"
-					placeholder="Nội dung tìm kiếm" aria-label="Search">
+			<form class="d-flex" role="search"
+				action="<%=url%>/san-pham-controller" method="get">
+				<input type="hidden" name="hanhDong" value="search-san-pham" /> <input
+					role="search" class="form-control me-2" type="search"
+					placeholder="Nội dung tìm kiếm" aria-label="Search"
+					name="keySearch">
 				<button class="btn btn-outline-success" type="submit">Tìm</button>
 				<%
 				Object obj = session.getAttribute("khachHang");
@@ -78,8 +84,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				} else {
 				%> --%>
 				<div class="ps-2 pe-2 pt-1" style="cursor: pointer">
-					<a
-						href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang"><i
+					<a href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang"><i
 						class="bi bi-cart" style="font-size: 1.5rem;"></i></a>
 				</div>
 				<%-- <%

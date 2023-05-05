@@ -51,8 +51,8 @@ public class SanPhamController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String hanhDong = request.getParameter("hanhDong");
-		if (hanhDong.equals("them-san-pham")) {
-//			themSanPham(request, response);
+		if (hanhDong.equals("search-san-pham")) {
+			searchSanPham(request, response);
 		} else if (hanhDong.equals("san-pham-detail")) {
 			detailSanPham(request, response);
 		} else if (hanhDong.equals("xac-nhan-dat-hang")) {
@@ -61,7 +61,7 @@ public class SanPhamController extends HttpServlet {
 			datHangThanhCong(request, response);
 		} else if (hanhDong.equals("danh-muc")) {
 			danhMuc(request, response);
-		} 
+		}
 	}
 
 	/**
@@ -226,6 +226,24 @@ public class SanPhamController extends HttpServlet {
 			request.setAttribute("sanPhamList", listSanPham);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	private void searchSanPham(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			String keySearch = request.getParameter("keySearch");
+			SanPhamDAO sanPhamDAO = new SanPhamDAO();
+			List<SanPham> listSanPham = sanPhamDAO.getSanPhamByKey(keySearch);
+
+			request.setAttribute("sanPhamList", listSanPham);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
