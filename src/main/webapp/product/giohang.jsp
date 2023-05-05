@@ -1,3 +1,7 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="model.SanPham"%>
+<%@page import="java.util.Map"%>
+<%@page import="model.GioHang"%>
 <%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -71,6 +75,12 @@
 	String email = khachHang.getEmail();
 	%>
 
+	<%
+	Long cartID = (Long) session.getAttribute("cartID");
+	GioHang gioHang = (GioHang) session.getAttribute("gioHang");
+	Map<SanPham, Integer> maps = gioHang.getLists();
+	%>
+
 	<form action="#" method="get">
 		<div class="container mt-3">
 			<div class="row">
@@ -80,6 +90,9 @@
 						<h6 class="mt-auto p-2 mb-0 me-5">Giá</h6>
 					</div>
 					<hr>
+					<%
+					for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
+					%>
 					<div class="card-body">
 						<div class="d-flex justify-content-between">
 							<div class="d-flex flex-row align-items-center mb-3">
@@ -90,14 +103,14 @@
 										style="width: 170px;">
 								</div>
 								<div class="ms-3">
-									<h4 class="mb-5">MacBook Pro</h4>
+									<h4 class="mb-5"><%=entry.getKey().getTenSanPham()%></h4>
 									<div class="row">
 										<div class="col-3 mt-1">
 											<label class="fs-6" for="form2Example27">Số lượng:</label>
 										</div>
 										<div class="col-4 ">
 											<input class="form-control fs-6" type="number" min="1"
-												value="1" />
+												value="<%=entry.getValue()%>" />
 										</div>
 										<div class="col-2 fs-6 mt-1">
 											<span>Xoá</span>
@@ -107,20 +120,23 @@
 							</div>
 							<div class="d-flex flex-row align-items-center">
 								<div style="width: 80px;">
-									<h5 class="mb-0">$1799</h5>
+									<h5 class="mb-0"><%=entry.getKey().getGiaBan()%> VND</h5>
 								</div>
 								<a href="#!" style="color: #cecece;"><i
 									class="fas fa-trash-alt"></i></a>
 							</div>
 						</div>
 						<hr>
-						<div class="d-flex flex-row-reverse">
-							<div class="p-2" style="width: 80px;">
-								<h5 class="mb-0">$1799</h5>
-							</div>
-							<div class="p-2">
-								<h5 class="mb-0">Tổng tiền:</h5>
-							</div>
+					</div>
+					<%
+					}
+					%>
+					<div class="d-flex flex-row-reverse">
+						<div class="p-2" style="width: 80px;">
+							<h5 class="mb-0">$1799</h5>
+						</div>
+						<div class="p-2">
+							<h5 class="mb-0">Tổng tiền:</h5>
 						</div>
 					</div>
 				</div>

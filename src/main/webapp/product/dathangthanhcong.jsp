@@ -22,6 +22,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
+	<!-- header -->
+	<jsp:include page="../header.jsp"></jsp:include>
+	<!-- end header -->
 
 	<div class="container mt-3">
 		<div class="row">
@@ -63,6 +66,10 @@
 			</div> -->
 		</div>
 	</div>
+
+	<!-- footer -->
+	<jsp:include page="../footer.jsp"></jsp:include>
+	<!-- end footer -->
 
 </body>
 </html>

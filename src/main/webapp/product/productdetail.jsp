@@ -100,12 +100,12 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				</form>
 			</div>
 		</div>
-	</nav> -->	
+	</nav> -->
 	<%-- <%@include file="header.jsp"%> --%>
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- end header -->
- <!-- end header -->
+	<!-- end header -->
 
 
 	<!-- product detail -->
@@ -114,8 +114,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	%>
 	<div class="container mt-3">
 		<form action="<%=url%>/san-pham-controller" method="get">
-		<input type="hidden" name="hanhDong" value="xac-nhan-dat-hang" />
-		<input type="hidden" name="maSanPham" value="<%=sanPham.getMaSanPham() %>" />
+			<input type="hidden" name="hanhDong" value="xac-nhan-dat-hang" /> <input
+				type="hidden" name="maSanPham" value="<%=sanPham.getMaSanPham()%>" />
 			<div class="row">
 				<div class="col-md-6">
 					<img src="<%=url%>/image/product/2.png" alt="Anh product"
@@ -129,7 +129,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 						</div>
 						<div class="col-md-12">
 							<!-- <span class="label label-primary">Vintage</span>  -->
-							<h6 class="monospaced" ><%=sanPham.getMaSanPham()%></h6>
+							<h6 class="monospaced"><%=sanPham.getMaSanPham()%></h6>
 						</div>
 						<!-- <div class="col-md-12">
 						<p class="desciption">Classic film camera. Uses 620 roll film.
@@ -172,11 +172,13 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 								<label class="form-label" for="form2Example27">Số lượng:</label>
 							</div>
 							<div class="col-md-2">
-								<input class="form-control" name="soLuong" type="number" min="1" value="1" />
+								<input class="form-control" name="soLuong" type="number" min="1"
+									value="1" />
 							</div>
 							<div class="col-md-3">
-								<a href="#" class="btn bg-success" type="submit">Thêm giỏ
-									hàng</a>
+								<a
+									href="<%=url%>/gio-hang-controller?hanhDong=them-gio-hang&maSanPham=<%=sanPham.getMaSanPham()%>"
+									class="btn bg-success" type="submit">Thêm giỏ hàng</a>
 							</div>
 							<div class="col-md-3">
 								<button
@@ -297,5 +299,9 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		</div>
 	</footer>
 	<!-- end footer -->
+
+	<script>
+		var soluong=2;
+	</script>
 </body>
 </html>

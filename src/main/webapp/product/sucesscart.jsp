@@ -25,8 +25,12 @@
 </head>
 <body>
 
+	<%
+String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		+ request.getContextPath();
+%>
 	<!-- header -->
-	<nav class="navbar navbar-expand-lg bg-body-tertiary"
+	<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary"
 		style="background-color: #e3f2fd;">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"> <img
@@ -68,7 +72,7 @@
 						nhập</a>
 
 
-					<!-- <div class="btn-group" style="margin-left: 0.2em">
+					<div class="btn-group" style="margin-left: 0.2em">
 					<button type="button" class="btn btn-info dropdown-toggle"
 						data-bs-toggle="dropdown" aria-expanded="false">Tài khoản</button>
 					<ul class="dropdown-menu dropdown-menu-end">
@@ -79,11 +83,12 @@
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#">Thoát tài khoản</a></li>
 					</ul>
-				</div> -->
+				</div>
 				</form>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
+	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- end header -->
 
 	<div class="container mt-3">
@@ -98,8 +103,8 @@
 								style="width: 170px;">
 						</div>
 						<div class="col-7 d-flex align-items-center">
-								<i class="bi bi-check-circle-fill me-2 text-success"></i>
-								<h5 class="mb-0">Sản phẩm đã được thêm vào giỏ hàng!</h5>
+							<i class="bi bi-check-circle-fill me-2 text-success"></i>
+							<h5 class="mb-0">Sản phẩm đã được thêm vào giỏ hàng!</h5>
 						</div>
 					</div>
 				</div>
@@ -113,8 +118,8 @@
 							<p class="mb-2 fs-4">$4818.00</p>
 						</div>
 						<div class="d-grid gap-2">
-							<a class="btn btn-primary bg-warning" href="#">Đến
-								trang thanh toán</a>
+							<a class="btn btn-primary bg-warning" href="#">Đến trang
+								thanh toán</a>
 						</div>
 						<div class="d-grid gap-2 mt-2">
 							<a class="btn btn-primary bg-warning" href="giohang.jsp">Đến

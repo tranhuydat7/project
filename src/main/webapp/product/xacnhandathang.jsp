@@ -112,7 +112,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	}
 
 	String tenDangNhapp = khachHang.getTenDangNhap();
-	String maKhachHang = khachHang.getMaKhachHang()+"";
+	String maKhachHang = khachHang.getMaKhachHang() + "";
 
 	String hoVaTen = khachHang.getHoVaTen();
 
@@ -141,9 +141,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		%>
 		<input type="hidden" name="hanhDong" value="dat-hang-thanh-cong" /> <input
 			type="hidden" name="maSanPham" value="<%=sanPham.getMaSanPham()%>" />
-		<input type="hidden" name="tongTien" value="<%=tongTien%>" /> <input
-			type="hidden" name="maKhachHang"
-			value="<%=maKhachHang%>" />
+		<input type="hidden" name="tongTien" value="<%=tongTien%>" />
 		<div class="container">
 			<div class="row mt-3">
 				<!-- left thong tin -->

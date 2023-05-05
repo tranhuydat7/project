@@ -139,4 +139,14 @@
     <servlet-name>SanPhamController</servlet-name>
     <url-pattern>/san-pham-controller</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GioHangController</display-name>
+    <servlet-name>GioHangController</servlet-name>
+    <servlet-class>controller.GioHangController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GioHangController</servlet-name>
+    <url-pattern>/gio-hang-controller</url-pattern>
+  </servlet-mapping>
 </web-app>
