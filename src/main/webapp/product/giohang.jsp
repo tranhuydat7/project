@@ -25,7 +25,13 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+<style>
+a:link, a:visited {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
 
 </head>
 <body>
@@ -109,7 +115,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 										style="width: 170px;">
 								</div>
 								<div class="ms-3">
-									<h4 class="mb-5"><%=entry.getKey().getTenSanPham()%></h4>
+									<a style="font-size: 30px; " class="mb-5" href="<%=url%>/san-pham-controller?hanhDong=san-pham-detail&maSanPham=<%=entry.getKey().getMaSanPham()%> "><%=entry.getKey().getTenSanPham()%></a>
 									<div class="row">
 										<div class="col-3 mt-1">
 											<label class="fs-6" for="form2Example27">Số lượng:</label>

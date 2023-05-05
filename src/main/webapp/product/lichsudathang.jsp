@@ -1,3 +1,4 @@
+<%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +24,10 @@
 </head>
 <body>
 	<!-- header -->
-	<nav class="navbar navbar-expand-lg bg-body-tertiary"
+	<!-- header -->
+	<jsp:include page="../header.jsp"></jsp:include>
+	<!-- end header -->
+	<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary"
 		style="background-color: #e3f2fd;">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"> <img
@@ -65,7 +69,7 @@
 						nhập</a>
 
 
-					<!-- <div class="btn-group" style="margin-left: 0.2em">
+					<div class="btn-group" style="margin-left: 0.2em">
 					<button type="button" class="btn btn-info dropdown-toggle"
 						data-bs-toggle="dropdown" aria-expanded="false">Tài khoản</button>
 					<ul class="dropdown-menu dropdown-menu-end">
@@ -76,13 +80,53 @@
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#">Thoát tài khoản</a></li>
 					</ul>
-				</div> -->
+				</div>
 				</form>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 	<!-- end header -->
 
+	<%
+	Object obj = session.getAttribute("khachHang");
+	KhachHang khachHang = null;
+	if (obj != null)
+		khachHang = (KhachHang) obj;
+	if (khachHang == null) {
+	%>
+	<h1>Bạn chưa đăng nhập vào hệ thống. vui lòng quay lại trang chủ</h1>
+	<%
+	} else {
+	%>
+	<%
+	String baoLoi = request.getAttribute("baoLoi") + "";
+	if (baoLoi == null || baoLoi.equals("null")) {
+		baoLoi = "";
+	}
+
+	String tenDangNhap = request.getAttribute("tenDangNhap") + "";
+	if (tenDangNhap == null || tenDangNhap.equals("null")) {
+		tenDangNhap = "";
+	}
+
+	String tenDangNhapp = khachHang.getTenDangNhap();
+
+	String hoVaTen = khachHang.getHoVaTen();
+
+	/* String gioiTinh = khachHang.getGioiTinh(); */
+
+	/* String ngaySinh = khachHang.getNgaySinh().toString(); */
+
+	/* String diaChiKhachHang = khachHang.getDiaChi(); */
+
+	/* String diaChiMuaHang = khachHang.getDiaChiMuaHang(); */
+
+	/* String diaChiNhanHang = khachHang.getDiaChiNhanHang(); */
+
+	String dienThoai = khachHang.getSoDienThoai();
+
+	String email = khachHang.getEmail();
+	%>
 	<div class="container">
 		<div class="card mt-3 mb-3">
 			<div></div>
@@ -127,6 +171,9 @@
 
 		</div>
 	</div>
+	<%
+	}
+	%>
 
 
 	<!-- footer -->

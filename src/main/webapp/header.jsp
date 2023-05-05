@@ -44,6 +44,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<li class="nav-item"><a class="nav-link"
 					href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=treem">TRẺ
 						EM</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">GIÁ TỐT</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">MỚI</a></li>
 			</ul>
 			<form class="d-flex" role="search"
 				action="<%=url%>/san-pham-controller" method="get">
