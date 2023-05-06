@@ -1,10 +1,12 @@
+<%@page import="model.SanPham"%>
+<%@page import="model.GioHang"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Giỏ hàng</title>
+<title>Thêm giỏ hàng </title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -91,14 +93,18 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- end header -->
 
+	<%
+	GioHang gioHang = (GioHang) session.getAttribute("gioHang");
+	SanPham sanPham = (SanPham) request.getAttribute("sanPham");
+	%>
+
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col-7 card mb-3 mb-lg-0">
 				<div class="card-body">
 					<div class="row">
 						<div class="col-5 d-flex justify-content-center">
-							<img
-								src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
+							<img src="<%=url%>/image/avatar/<%=sanPham.getAvatar()%>"
 								class="img-fluid rounded-3 " alt="Shopping item"
 								style="width: 170px;">
 						</div>

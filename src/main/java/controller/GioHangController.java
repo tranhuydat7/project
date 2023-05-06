@@ -80,6 +80,7 @@ public class GioHangController extends HttpServlet {
 				SanPham sanPham = sanPhamDAO.getSanPhamByMaSanPham(maSanPham);
 				System.out.println("sp1: " + sanPham.toString());
 				if (sanPham != null) {
+					request.setAttribute("sanPham", sanPham);
 					HttpSession httpSession = request.getSession();
 					if (httpSession.getAttribute("gioHang") == null) {
 						GioHang gioHang = new GioHang();

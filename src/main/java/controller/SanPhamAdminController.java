@@ -2,10 +2,12 @@ package controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import model.DanhMuc;
 import model.KhuyenMai;
 import model.KichCo;
@@ -14,6 +16,7 @@ import model.SanPham;
 import util.JDBCUtil;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -33,6 +36,10 @@ import database.SanPhamDAO;
 /**
  * Servlet implementation class SanPhamAdminController
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+		maxFileSize = 1024 * 1024 * 10, // 10 MB
+		maxRequestSize = 1024 * 1024 * 100 // 100 MB
+)
 public class SanPhamAdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -163,9 +170,9 @@ public class SanPhamAdminController extends HttpServlet {
 			String maDanhMuc = request.getParameter("maDanhMuc");
 			String maMau = request.getParameter("maMau");
 			String maKichCo = request.getParameter("maKichCo");
-			String avatar = request.getParameter("avatar");
 			String cachSuDung = request.getParameter("cachSuDung");
 			String chatLieu = request.getParameter("chatLieu");
+			Part part = request.getPart("avatar");
 
 			// convert du lieu
 			int giaBanConvert = Integer.parseInt(giaBan);
@@ -177,6 +184,8 @@ public class SanPhamAdminController extends HttpServlet {
 			String failed = "";
 			String url = "";
 			SanPhamDAO sanPhamDAO = new SanPhamDAO();
+			String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
+			part.write("/Users/admin/eclipse-workspace/DaYeShop/src/main/webapp/image/avatar" + "/" + fileName);
 
 			if (sanPhamDAO.kiemTraMaSanPham(maSanPham)) {
 				baoLoi += "mã sản phẩm đã tồn tại, vui lòng chọn mã sản phẩm khác";
@@ -190,7 +199,7 @@ public class SanPhamAdminController extends HttpServlet {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGocConvert, giaBanConvert, soLuongConvert, moTa,
-						danhMuc, mau, kichCo, avatar, cachSuDung, chatLieu);
+						danhMuc, mau, kichCo, fileName, cachSuDung, chatLieu);
 
 				int ketQua = sanPhamDAO.insert(sanPham);
 				if (ketQua == 0) {
@@ -212,7 +221,7 @@ public class SanPhamAdminController extends HttpServlet {
 			request.setAttribute("maDanhMuc", maDanhMuc);
 			request.setAttribute("maMau", maMau);
 			request.setAttribute("maKichCo", maKichCo);
-			request.setAttribute("avatar", avatar);
+//			request.setAttribute("avatar", avatar);
 			request.setAttribute("cachSuDung", cachSuDung);
 			request.setAttribute("chatLieu", chatLieu);
 

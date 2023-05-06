@@ -204,6 +204,7 @@ public class SanPhamController extends HttpServlet {
 			request.setAttribute("sanPham", sanPham);
 			request.setAttribute("soLuong", soLuong);
 			request.setAttribute("tongTien", tongTien);
+			session.setAttribute("chiTietDonHang", chiTietDonHang);
 
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 			requestDispatcher.forward(request, response);

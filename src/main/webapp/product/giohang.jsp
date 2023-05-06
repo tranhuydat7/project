@@ -125,7 +125,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 							<div class="d-flex flex-row align-items-center mb-3">
 								<div>
 									<img
-										src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
+										src="<%=url %>/image/avatar/<%=entry.getKey().getAvatar() %> "
 										class="img-fluid rounded-3" alt="Shopping item"
 										style="width: 170px;">
 								</div>

@@ -97,8 +97,10 @@ a:link, a:visited {
 			<div class="col">
 
 				<div class="card">
-					<a href="<%=url%>/san-pham-controller?hanhDong=san-pham-detail&maSanPham=<%=sanPham.getMaSanPham()%>"> <img
-						src="<%=url%>/image/product/1.png" class="card-img-top" alt="...">
+					<a
+						href="<%=url%>/san-pham-controller?hanhDong=san-pham-detail&maSanPham=<%=sanPham.getMaSanPham()%>">
+						<img src="<%=url%>/image/avatar/<%=sanPham.getAvatar()%>"
+						class="card-img-top" alt="...">
 					</a>
 					<div class="card-body">
 						<h5>
@@ -110,8 +112,8 @@ a:link, a:visited {
 							VND
 						</p>
 						<a
-									href="<%=url%>/gio-hang-controller?hanhDong=them-gio-hang&maSanPham=<%=sanPham.getMaSanPham()%>"
-									class="btn bg-success" type="submit">Thêm giỏ hàng</a>
+							href="<%=url%>/gio-hang-controller?hanhDong=them-gio-hang&maSanPham=<%=sanPham.getMaSanPham()%>"
+							class="btn bg-success" type="submit">Thêm giỏ hàng</a>
 						<!-- <div class="row justify-content-between">
 							<div class="col-3">
 								<a type="button" href="#" class="btn btn-primary">Mua</a>

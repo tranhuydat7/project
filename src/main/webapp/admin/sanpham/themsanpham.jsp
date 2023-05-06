@@ -97,7 +97,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				</ol>
 			</nav>
 
-			<form action="<%=url%>/san-pham-admin-controller" method="get">
+			<form action="<%=url%>/san-pham-admin-controller" method="post"
+				enctype="multipart/form-data">
 				<input type="hidden" name="hanhDong" value="them-san-pham" />
 				<div class="row">
 					<div class="col-6">
@@ -191,8 +192,9 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				</div>
 				<div class="row">
 					<div class="mb-3 col-4">
-						<label for="avatar" class="form-label">Avatar</label> <input type="file" class="form-control"
-							id="avatar" name="avatar">
+						<label for="avatar" class="form-label">Avatar</label> 
+						<input
+							type="file" class="form-control" id="avatar" name="avatar">
 					</div>
 					<div class="mb-3 col-4">
 						<label for="cachSuDung" class="form-label">Cách sử dụng<span

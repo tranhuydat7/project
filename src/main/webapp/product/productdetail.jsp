@@ -118,7 +118,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				type="hidden" name="maSanPham" value="<%=sanPham.getMaSanPham()%>" />
 			<div class="row">
 				<div class="col-md-6">
-					<img src="<%=url%>/image/product/2.png" alt="Anh product"
+					<img src="<%=url%>/image/avatar/<%=sanPham.getAvatar()%>" alt="Anh product"
 						class="image-responsive" />
 				</div>
 

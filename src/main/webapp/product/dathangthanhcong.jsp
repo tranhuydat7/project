@@ -1,3 +1,5 @@
+<%@page import="model.ChiTietDonHang"%>
+<%@page import="model.SanPham"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,15 +27,21 @@
 	<!-- header -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- end header -->
+	<%
+String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		+ request.getContextPath();
+%>
 
+	<%
+	ChiTietDonHang chiTietDonHang = (ChiTietDonHang) session.getAttribute("chiTietDonHang");
+	%>
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col-7 card mb-3 mb-lg-0">
 				<div class="card-body">
 					<div class="row">
 						<div class="col-5 d-flex justify-content-center">
-							<img
-								src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
+							<img src="<%=url%>/image/avatar/<%=chiTietDonHang.getSanPham().getAvatar() %>"
 								class="img-fluid rounded-3 " alt="Shopping item"
 								style="width: 170px;">
 						</div>
