@@ -27,9 +27,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <style>
 a:link, a:visited {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 </style>
 
@@ -102,6 +102,21 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 					</div>
 					<hr>
 					<%
+					if (gioHang == null) {
+					%>
+					<div class="d-flex flex-row-reverse">
+						<div class="p-2" style="width: 80px;">
+							<h5 class="mb-0">VND</h5>
+						</div>
+						<div class="p-2">
+							<h5 class="mb-0">Tổng tiền:</h5>
+						</div>
+					</div>
+					<%
+					} else if (gioHang != null) {
+					%>
+
+					<%
 					for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
 						tongTien += entry.getKey().getGiaBan() * entry.getValue();
 					%>
@@ -115,7 +130,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 										style="width: 170px;">
 								</div>
 								<div class="ms-3">
-									<a style="font-size: 30px; " class="mb-5" href="<%=url%>/san-pham-controller?hanhDong=san-pham-detail&maSanPham=<%=entry.getKey().getMaSanPham()%> "><%=entry.getKey().getTenSanPham()%></a>
+									<a style="font-size: 30px;" class="mb-5"
+										href="<%=url%>/san-pham-controller?hanhDong=san-pham-detail&maSanPham=<%=entry.getKey().getMaSanPham()%> "><%=entry.getKey().getTenSanPham()%></a>
 									<div class="row">
 										<div class="col-3 mt-1">
 											<label class="fs-6" for="form2Example27">Số lượng:</label>
@@ -180,6 +196,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		</div>
 	</form>
 	<%
+	}
 	}
 	%>
 

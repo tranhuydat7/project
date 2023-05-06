@@ -129,7 +129,9 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 						</div>
 						<div class="col-md-12">
 							<!-- <span class="label label-primary">Vintage</span>  -->
-							<h6 class="monospaced"><%=sanPham.getMaSanPham()%></h6>
+							<h6 class="monospaced">
+								Mã sản phẩm:
+								<%=sanPham.getMaSanPham()%></h6>
 						</div>
 						<!-- <div class="col-md-12">
 						<p class="desciption">Classic film camera. Uses 620 roll film.
@@ -153,8 +155,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 							</div> -->
 							<div class="col-md-7">
 								<h3 class="product-price"><%=sanPham.getGiaBan()%>
-									VND
-
+									₫
 								</h3>
 							</div>
 							<!-- <div class="col-md-3">
@@ -218,13 +219,15 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 					<!-- Nav tabs -->
 					<h3>Thông tin sản phẩm</h3>
 					<h6>
+						Mô tả:
 						<%=sanPham.getMoTa()%>
 					</h6>
 					<h6>
 						Chất liệu:
 						<%=sanPham.getChatLieu()%></h6>
-
-
+					<h6>
+						Hướng dẫn sử dụng:
+						<%=sanPham.getCachSuDung()%></h6>
 				</div>
 
 			</div>
@@ -301,7 +304,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	<!-- end footer -->
 
 	<script>
-		var soluong=2;
+		var soluong = 2;
 	</script>
 </body>
 </html>

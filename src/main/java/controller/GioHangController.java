@@ -117,16 +117,21 @@ public class GioHangController extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
 
-			HttpSession httpSession = request.getSession();
-			GioHang gioHang = (GioHang) httpSession.getAttribute("gioHang");
-//			String cartID = (String) httpSession.getAttribute("cartID");
 			String url = "/product/giohang.jsp";
+			HttpSession httpSession = request.getSession();
+			if (httpSession.getAttribute("gioHang") == null) {
+				GioHang gioHang = new GioHang();
+				httpSession.setAttribute("gioHang", gioHang);
+			} else {
+				GioHang gioHang = (GioHang) httpSession.getAttribute("gioHang");
+//			String cartID = (String) httpSession.getAttribute("cartID");
 
-			System.out.println("giohang: " + gioHang.toString());
+				System.out.println("giohang: " + gioHang.toString());
 //			System.out.println("CartID: " + cartID);
 
 //			httpSession.setAttribute("cartID", cartID);
-			httpSession.setAttribute("gioHang", gioHang);
+				httpSession.setAttribute("gioHang", gioHang);
+			}
 
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 			requestDispatcher.forward(request, response);

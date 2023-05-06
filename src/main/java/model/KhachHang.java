@@ -15,6 +15,7 @@ public class KhachHang {
 	private String soDienThoai;
 	private String email;
 	private boolean dangKiNhanTin;
+	private String duongDanAnh;
 
 	public KhachHang() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +23,7 @@ public class KhachHang {
 
 	public KhachHang(String tenDangNhap, String password, String hoVaTen, String diaChi, String gioiTinh,
 			String diaChiNhanHang, String diaChiMuaHang, Date ngaySinh, String soDienThoai, String email,
-			boolean dangKiNhanTin) {
+			boolean dangKiNhanTin, String duongDanAnh) {
 		this.tenDangNhap = tenDangNhap;
 		this.password = password;
 		this.hoVaTen = hoVaTen;
@@ -34,11 +35,12 @@ public class KhachHang {
 		this.soDienThoai = soDienThoai;
 		this.email = email;
 		this.dangKiNhanTin = dangKiNhanTin;
+		this.duongDanAnh = duongDanAnh;
 	}
 
 	public KhachHang(int maKhachHang, String tenDangNhap, String password, String hoVaTen, String diaChi,
 			String gioiTinh, String diaChiNhanHang, String diaChiMuaHang, Date ngaySinh, String soDienThoai,
-			String email, boolean dangKiNhanTin) {
+			String email, boolean dangKiNhanTin, String duongDanAnh) {
 		this.maKhachHang = maKhachHang;
 		this.tenDangNhap = tenDangNhap;
 		this.password = password;
@@ -51,6 +53,7 @@ public class KhachHang {
 		this.soDienThoai = soDienThoai;
 		this.email = email;
 		this.dangKiNhanTin = dangKiNhanTin;
+		this.duongDanAnh = duongDanAnh;
 	}
 
 	public int getMaKhachHang() {
@@ -149,6 +152,14 @@ public class KhachHang {
 		this.dangKiNhanTin = dangKiNhanTin;
 	}
 
+	public String getDuongDanAnh() {
+		return duongDanAnh;
+	}
+
+	public void setDuongDanAnh(String duongDanAnh) {
+		this.duongDanAnh = duongDanAnh;
+	}
+
 	@Override
 	public String toString() {
 		return "KhachHang [maKhachHang=" + maKhachHang + ", tenDangNhap=" + tenDangNhap + ", password=" + password
@@ -157,5 +168,4 @@ public class KhachHang {
 				+ soDienThoai + ", email=" + email + ", dangKiNhanTin=" + dangKiNhanTin + "]";
 	}
 
-	
 }

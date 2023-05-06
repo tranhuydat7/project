@@ -2,6 +2,7 @@ package controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,15 +16,19 @@ import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Path;
 import java.sql.Date;
 import java.util.Collection;
-
 
 import database.KhachHangDAO;
 
 /**
  * Servlet implementation class KhachHangController
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+		maxFileSize = 1024 * 1024 * 10, // 10 MB
+		maxRequestSize = 1024 * 1024 * 100 // 100 MB
+)
 public class KhachHangController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -156,7 +161,7 @@ public class KhachHangController extends HttpServlet {
 				url = "/user/dangky.jsp";
 			} else {
 				KhachHang khachHang = new KhachHang(tenDangNhap, matKhau, hoVaTen, null, null, null, null, null,
-						dienThoai, email, false);
+						dienThoai, email, false, null);
 				khachHangDAO.insert(khachHang);
 				url = "/user/success.jsp";
 			}
@@ -250,12 +255,19 @@ public class KhachHangController extends HttpServlet {
 			String hoVaTen = request.getParameter("hoVaTen");
 			String dienThoai = request.getParameter("dienThoai");
 			String email = request.getParameter("email");
-			
+			Part part = request.getPart("duongDanAnh");
+			System.out.println("hovaten: " + hoVaTen);
+			System.out.println("dt: " + dienThoai);
+			System.out.println("email: " + email);
+			System.out.println("part: " + part);
 
 			// check tên đăng nhập trùng
 			String baoLoi = "";
 			KhachHangDAO khachHangDAO = new KhachHangDAO();
 			String url = "";
+			if (hoVaTen == null && dienThoai == null && email == null && part == null) {
+				System.out.println("khong co du lieu");
+			}
 
 			if (baoLoi.length() > 0) {
 				url = "/register.jsp";
@@ -266,17 +278,20 @@ public class KhachHangController extends HttpServlet {
 					khachHang = (KhachHang) obj;
 				if (khachHang != null) {
 //					int maKhachHang = khachHang.getMaKhachHang();
-					String tenDangNhap=khachHang.getTenDangNhap();
+					String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
+					part.write("/Users/admin/eclipse-workspace/DaYeShop/src/main/webapp/image/avatar" + "/" + fileName);
+					String tenDangNhap = khachHang.getTenDangNhap();
 					khachHang = new KhachHang();
 //					khachHang.setMaKhachHang(maKhachHang);
 					khachHang.setTenDangNhap(tenDangNhap);
 					khachHang.setHoVaTen(hoVaTen);
 					khachHang.setSoDienThoai(dienThoai);
 					khachHang.setEmail(email);
-					
+					khachHang.setDuongDanAnh(fileName);
+
 					System.out.println("hovaten: " + khachHang.getHoVaTen());
 					System.out.println("tendangnhap: " + khachHang.getTenDangNhap());
-					
+
 					khachHangDAO.updateInfo(khachHang);
 					KhachHang khachHangUpdate = khachHangDAO.selectById(khachHang);
 					request.getSession().setAttribute("khachHang", khachHangUpdate);
@@ -288,6 +303,7 @@ public class KhachHangController extends HttpServlet {
 			request.setAttribute("hoVaTen", hoVaTen);
 			request.setAttribute("dienThoai", dienThoai);
 			request.setAttribute("email", email);
+			request.setAttribute("duongDanAnh", part);
 
 			// forward lỗi
 			request.setAttribute("baoLoi", baoLoi);

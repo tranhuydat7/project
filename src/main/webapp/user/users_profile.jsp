@@ -103,6 +103,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 	String hoVaTen = khachHang.getHoVaTen();
 
+
 	/* String gioiTinh = khachHang.getGioiTinh(); */
 
 	/* String ngaySinh = khachHang.getNgaySinh().toString(); */
@@ -116,6 +117,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	String dienThoai = khachHang.getSoDienThoai();
 
 	String email = khachHang.getEmail();
+
 	%>
 
 
@@ -142,8 +144,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 							<div
 								class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-								<img src="assets/img/profile-img.jpg" alt="Ảnh đại diện"
-									class="rounded-circle">
+								<img src="<%=url%>/image/avatar/<%=khachHang.getDuongDanAnh()%>"
+									alt="Ảnh đại diện" class="rounded-circle">
 								<h2><%=tenDangNhapp%></h2>
 								<!-- <h3>Web Designer</h3> -->
 								<div class="social-links mt-2">
@@ -235,20 +237,25 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 								<!-- Profile Edit Form -->
 								<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 									<form class="form" action="<%=url%>/khach-hang-controller"
-										method="get">
+										method="post" enctype="multipart/form-data">
 										<input type="hidden" name="hanhDong" value="doi-thong-tin" />
 										<div class="row mb-3">
 											<label for="profileImage"
 												class="col-md-4 col-lg-3 col-form-label">Ảnh đại
 												diện</label>
 											<div class="col-md-8 col-lg-9">
-												<img src="assets/img/profile-img.jpg" alt="Ảnh đại diện">
+												<img src="<%=url%>/image/avatar/<%=khachHang.getDuongDanAnh()%>"
+													alt="Ảnh đại diện" width="150" height="150">
 												<div class="pt-2">
-													<a href="#" class="btn btn-primary btn-sm"
-														title="Upload new profile image"><i
-														class="bi bi-upload"></i></a> <a href="#"
+													<input type="file" class="form-control" id="duongDanAnh"
+														name="duongDanAnh">
+													<!-- <a href="#"
+														class="btn btn-primary btn-sm"
+														title="Upload new profile image"> <i
+														class="bi bi-upload"></i></a>
+														 <a href="#"
 														class="btn btn-danger btn-sm"
-														title="Remove my profile image"><i class="bi bi-trash"></i></a>
+														title="Remove my profile image"><i class="bi bi-trash"></i></a> -->
 												</div>
 											</div>
 										</div>

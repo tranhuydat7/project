@@ -43,7 +43,7 @@ public class DonHangDAO implements DAOInterface<DonHang> {
 				Date ngayGiaoHang = rs.getDate("ngaygiaohang");
 
 				KhachHang khachHang = new KhachHang(maKhachHang, null, null, null, null, null, null, null, null, null,
-						null, false);
+						null, false, null);
 
 				DonHang donHang = new DonHang(maDonHang, khachHang, diaChiNhanHang, trangThai, hinhThucThanhToan,
 						trangThaiThanhToan, ngayDatHang, ngayGiaoHang);
@@ -84,7 +84,7 @@ public class DonHangDAO implements DAOInterface<DonHang> {
 				Date ngayGiaoHang = rs.getDate("ngaygiaohang");
 
 				KhachHang khachHang = new KhachHang(maKhachHang, null, null, null, null, null, null, null, null, null,
-						null, false);
+						null, false, null);
 
 				ketQua = new DonHang(maDonHang, khachHang, diaChiNhanHang, trangThai, hinhThucThanhToan,
 						trangThaiThanhToan, ngayDatHang, ngayGiaoHang);

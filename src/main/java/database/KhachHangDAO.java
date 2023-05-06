@@ -42,7 +42,7 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 				boolean dangKiNhanTin = rs.getBoolean("dangkinhantin");
 
 				KhachHang khachHang = new KhachHang(maKhachHang, tenDangNhap, password, hoVaTen, diaChi, gioiTinh,
-						diaChiNhanHang, diaChiMuaHang, ngaySinh, soDienThoai, email, dangKiNhanTin);
+						diaChiNhanHang, diaChiMuaHang, ngaySinh, soDienThoai, email, dangKiNhanTin, null);
 				ketQua.add(khachHang);
 			}
 
@@ -82,9 +82,10 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 				String soDienThoai = rs.getString("sodienthoai");
 				boolean dangKiNhanTin = rs.getBoolean("dangkinhantin");
 				String email = rs.getString("email");
+				String duongDanAnh = rs.getString("duongdananh");
 
 				ketQua = new KhachHang(maKhachHang, tenDangNhap, password, hoVaTen, diaChi, gioiTinh, diaChiNhanHang,
-						diaChiMuaHang, ngaySinh, soDienThoai, email, dangKiNhanTin);
+						diaChiMuaHang, ngaySinh, soDienThoai, email, dangKiNhanTin, duongDanAnh);
 				break;
 			}
 
@@ -118,9 +119,10 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 				String hoVaTen = rs.getString("hovaten");
 				String soDienThoai = rs.getString("sodienthoai");
 				String email = rs.getString("email");
+				String duongdanhanh = rs.getString("duongdananh");
 
 				ketQua = new KhachHang(tenDangNhap, password, hoVaTen, null, null, null, null, null, soDienThoai, email,
-						false);
+						false, duongdanhanh);
 				break;
 			}
 
@@ -260,12 +262,13 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 			Connection con = JDBCUtil.getConnection();
 			// bước 2: tạo đối tượng statement
 			String sql = "UPDATE `daye_shop`.`user` SET `hovaten` = ?" + ", `sodienthoai` = ?" + ", `email` = ?"
-					+ " WHERE (`tendangnhap` = ?" + ")";
+					+ ", `duongdananh` = ?" + " WHERE (`tendangnhap` = ?" + ")";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, t.getHoVaTen());
 			pst.setString(2, t.getSoDienThoai());
 			pst.setString(3, t.getEmail());
-			pst.setString(4, t.getTenDangNhap());
+			pst.setString(4, t.getDuongDanAnh());
+			pst.setString(5, t.getTenDangNhap());
 
 			// bước 3: thực thi câu lệnh SQL
 			ketQua = pst.executeUpdate();
@@ -458,9 +461,10 @@ public class KhachHangDAO implements DAOInterface<KhachHang> {
 				String hoVaTen = rs.getString("hovaten");
 				String soDienThoai = rs.getString("sodienthoai");
 				String email = rs.getString("email");
+				String duongDanAnh = rs.getString("duongdananh");
 
 				ketQua = new KhachHang(maKhacHang, tenDangNhap1, password, hoVaTen, null, null, null, null, null,
-						soDienThoai, email, false);
+						soDienThoai, email, false, duongDanAnh);
 				break;
 			}
 
