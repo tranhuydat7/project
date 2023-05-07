@@ -101,19 +101,24 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				enctype="multipart/form-data">
 				<input type="hidden" name="hanhDong" value="them-san-pham" />
 				<div class="row">
-					<div class="col-6">
+					<div class="col-4">
 						<label for="maSanPham" class="form-label">Mã sản phẩm <span
 							class="red">*</span></label> <input type="text" class="form-control"
 							id="maSanPham" name="maSanPham" placeholder="Mã sản phẩm"
 							required>
 						<div id="msg_maDanhMuc" class="red"><%=baoLoi%></div>
 					</div>
-					<div class="mb-3 col-6">
+					<div class="mb-3 col-4">
 						<label for="tenSanPham" class="form-label">Tên sản phẩm<span
 							class="red">*</span></label> <input type="text" class="form-control"
 							id="tenSanPham" name="tenSanPham" placeholder="Tên sản phẩm"
 							required>
 					</div>
+				</div>
+				<div class="form-check col-1 mb-2">
+					<label class="form-check-label" for="flexRadioDefault1">Độ
+						hot</label> <input class="form-check-input" type="checkbox" name="isHot"
+						id="isHot">
 				</div>
 				<div class="row">
 					<div class="mb-3 col-4">
@@ -192,9 +197,9 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				</div>
 				<div class="row">
 					<div class="mb-3 col-4">
-						<label for="avatar" class="form-label">Avatar</label> 
-						<input
-							type="file" class="form-control" id="avatar" name="avatar">
+						<label for="avatar" class="form-label">Avatar</label> <input
+							type="file" class="form-control" id="avatar" name="avatar"
+							required>
 					</div>
 					<div class="mb-3 col-4">
 						<label for="cachSuDung" class="form-label">Cách sử dụng<span

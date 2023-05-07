@@ -173,11 +173,18 @@ public class SanPhamAdminController extends HttpServlet {
 			String cachSuDung = request.getParameter("cachSuDung");
 			String chatLieu = request.getParameter("chatLieu");
 			Part part = request.getPart("avatar");
+			String isHot = request.getParameter("isHot");
+			System.out.println("isHot: " + isHot);
 
 			// convert du lieu
 			int giaBanConvert = Integer.parseInt(giaBan);
 			int giaGocConvert = Integer.parseInt(giaGoc);
 			int soLuongConvert = Integer.parseInt(soLuong);
+			boolean isHotSP = false;
+			if (isHot != null) {
+				isHotSP = true;
+				System.out.println("ishotsp:" + isHotSP);
+			}
 
 			String baoLoi = "";
 			String success = "";
@@ -199,7 +206,7 @@ public class SanPhamAdminController extends HttpServlet {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGocConvert, giaBanConvert, soLuongConvert, moTa,
-						danhMuc, mau, kichCo, fileName, cachSuDung, chatLieu);
+						danhMuc, mau, kichCo, fileName, cachSuDung, chatLieu, isHotSP);
 
 				int ketQua = sanPhamDAO.insert(sanPham);
 				if (ketQua == 0) {
@@ -288,6 +295,13 @@ public class SanPhamAdminController extends HttpServlet {
 			String avatar = request.getParameter("avatar");
 			String cachSuDung = request.getParameter("cachSuDung");
 			String chatLieu = request.getParameter("chatLieu");
+			String isHot = request.getParameter("isHot");
+			System.out.println("isHot: " + isHot);
+			boolean isHotSP = false;
+			if (isHot != null) {
+				isHotSP = true;
+				System.out.println("ishotsp:" + isHotSP);
+			}
 
 			// convert du lieu
 			int giaBanConvert = Integer.parseInt(giaBan);
@@ -306,7 +320,7 @@ public class SanPhamAdminController extends HttpServlet {
 			KichCo kichCo = new KichCo();
 			kichCo.setMaKichCo(maKichCo);
 			SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGocConvert, giaBanConvert, soLuongConvert, moTa,
-					danhMuc, mau, kichCo, avatar, cachSuDung, chatLieu);
+					danhMuc, mau, kichCo, avatar, cachSuDung, chatLieu, isHotSP);
 
 			int ketQua = sanPhamDAO.update(sanPham);
 			System.out.println("ketqua: " + ketQua);

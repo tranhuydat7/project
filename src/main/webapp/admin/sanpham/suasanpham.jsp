@@ -113,6 +113,11 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 							value="<%=sanPham.getTenSanPham()%>" required>
 					</div>
 				</div>
+				<div class="form-check col-1 mb-2">
+					<label class="form-check-label" for="flexRadioDefault1">Độ
+						hot</label> <input class="form-check-input" type="checkbox" name="isHot"
+						id="isHot" <%=(sanPham.isHot()) ? "checked='checked'" : ""%>>
+				</div>
 				<div class="row">
 					<div class="mb-3 col-4">
 						<label for="giaBan" class="form-label">Giá bán <span
@@ -178,9 +183,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 					<div class="mb-3 col-4">
 						<label for="chatLieu" class="form-label">Chất liệu<span
 							class="red">*</span></label> <input type="text" class="form-control"
-							id="chatLieu" name="chatLieu"
-							value="<%=sanPham.getChatLieu()%>" placeholder="Nhập chất liệu"
-							required>
+							id="chatLieu" name="chatLieu" value="<%=sanPham.getChatLieu()%>"
+							placeholder="Nhập chất liệu" required>
 					</div>
 				</div>
 

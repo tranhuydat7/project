@@ -64,6 +64,13 @@ h1, h2, h3, h4, h5, h6 {
 .red {
 	color: red;
 }
+
+.avatar {
+  vertical-align: middle;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
 </style>
 
 </head>
@@ -145,7 +152,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 								class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
 								<img src="<%=url%>/image/avatar/<%=khachHang.getDuongDanAnh()%>"
-									alt="Ảnh đại diện" class="rounded-circle">
+									alt="Ảnh đại diện" class="avatar" >
 								<h2><%=tenDangNhapp%></h2>
 								<!-- <h3>Web Designer</h3> -->
 								<div class="social-links mt-2">
@@ -245,7 +252,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 												diện</label>
 											<div class="col-md-8 col-lg-9">
 												<img src="<%=url%>/image/avatar/<%=khachHang.getDuongDanAnh()%>"
-													alt="Ảnh đại diện" width="150" height="150">
+													alt="Ảnh đại diện" width="150" height="150" class="avatar">
 												<div class="pt-2">
 													<input type="file" class="form-control" id="duongDanAnh"
 														name="duongDanAnh">

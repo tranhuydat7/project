@@ -34,6 +34,7 @@
 .add-to-cart .btn {
 	border-radius: 0;
 }
+
 </style>
 </head>
 <body>
@@ -117,7 +118,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 			<input type="hidden" name="hanhDong" value="xac-nhan-dat-hang" /> <input
 				type="hidden" name="maSanPham" value="<%=sanPham.getMaSanPham()%>" />
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 avatar">
 					<img src="<%=url%>/image/avatar/<%=sanPham.getAvatar()%>" alt="Anh product"
 						class="image-responsive" />
 				</div>

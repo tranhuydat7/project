@@ -34,6 +34,29 @@ a:link, a:visited {
 .card-text {
 	color: red;
 }
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+}
+
+/* Add some padding inside the card container */
+.container {
+	padding: 2px 16px;
+}
+
+.button:hover {
+	opacity: 0.7;
+}
+
+/* .card{
+	outline: 0;
+	padding: 12px;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 15px;
+} */
 </style>
 
 </head>
@@ -43,21 +66,11 @@ a:link, a:visited {
 	<%@include file="header.jsp"%>
 	<!-- end header -->
 
-
-
 	<!-- body -->
 	<div class="container">
 		<!--  slider-->
-		<div id="carouselExampleIndicators" class="carousel slide pt-4 pb-4">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="0" class="active" aria-current="true"
-					aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="2" aria-label="Slide 3"></button>
-			</div>
+		<div id="carouselExampleAutoplaying" class="carousel slide mt-2"
+			data-bs-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img src="<%=url%>/image/slider/1.png" class="d-block w-100"
@@ -73,12 +86,12 @@ a:link, a:visited {
 				</div>
 			</div>
 			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Previous</span>
 			</button>
 			<button class="carousel-control-next" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Next</span>
 			</button>
@@ -86,6 +99,8 @@ a:link, a:visited {
 		<!-- end slider  -->
 
 		<!-- product -->
+		<h4 class="mt-3">Sản phẩm hot</h4>
+
 		<div class="row row-cols-1 row-cols-md-5 g-4">
 			<%
 			int i = 1;
@@ -95,7 +110,6 @@ a:link, a:visited {
 			for (SanPham sanPham : listSanPham) {
 			%>
 			<div class="col">
-
 				<div class="card">
 					<a
 						href="<%=url%>/san-pham-controller?hanhDong=san-pham-detail&maSanPham=<%=sanPham.getMaSanPham()%>">
@@ -103,17 +117,18 @@ a:link, a:visited {
 						class="card-img-top" alt="...">
 					</a>
 					<div class="card-body">
-						<h5>
+						<h6>
 							<a
 								href="<%=url%>/san-pham-controller?hanhDong=san-pham-detail&maSanPham=<%=sanPham.getMaSanPham()%>"
 								class="card-title"><%=sanPham.getTenSanPham()%></a>
-						</h5>
+						</h6>
 						<p id="card-text" class="card-text"><%=sanPham.getGiaBan()%>
 							VND
 						</p>
 						<a
 							href="<%=url%>/gio-hang-controller?hanhDong=them-gio-hang&maSanPham=<%=sanPham.getMaSanPham()%>"
-							class="btn bg-success" type="submit">Thêm giỏ hàng</a>
+							class="btn bg-success d-grid gap-2" type="submit">Thêm giỏ
+							hàng</a>
 						<!-- <div class="row justify-content-between">
 							<div class="col-3">
 								<a type="button" href="#" class="btn btn-primary">Mua</a>
@@ -143,6 +158,77 @@ a:link, a:visited {
 		</div>
 		<!-- end product -->
 
+		<h4 class="mt-3">Thời trang công sở</h4>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-end">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<%-- <%
+				int count = (int) request.getAttribute("end");
+				for (int index = 1; index <= count; index++) {
+				%> --%>
+				<%-- <li class="page-item"><a class="page-link"
+					href="<%=url%>/danh-muc-admin-controller?hanhDong=list&index=<%=index%>"><%=index%></a></li> --%>
+				<!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+				<%-- <%
+				}
+				%> --%>
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+
+		<h4 class="mt-3">Hàng mới về</h4>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-end">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<%-- <%
+				int count = (int) request.getAttribute("end");
+				for (int index = 1; index <= count; index++) {
+				%> --%>
+				<%-- <li class="page-item"><a class="page-link"
+					href="<%=url%>/danh-muc-admin-controller?hanhDong=list&index=<%=index%>"><%=index%></a></li> --%>
+				<!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+				<%-- <%
+				}
+				%> --%>
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+		
+		<h4 class="mt-3">Hàng bán chạy trong tuần</h4>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-end">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<%-- <%
+				int count = (int) request.getAttribute("end");
+				for (int index = 1; index <= count; index++) {
+				%> --%>
+				<%-- <li class="page-item"><a class="page-link"
+					href="<%=url%>/danh-muc-admin-controller?hanhDong=list&index=<%=index%>"><%=index%></a></li> --%>
+				<!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+				<%-- <%
+				}
+				%> --%>
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+
+
+
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-end">
 				<li class="page-item"><a class="page-link" href="#"
@@ -167,9 +253,12 @@ a:link, a:visited {
 	</div>
 	<!-- and body -->
 
+
+
 	<!-- footer -->
 	<%@include file="footer.jsp"%>
 	<!-- end footer -->
+
 
 </body>
 </html>

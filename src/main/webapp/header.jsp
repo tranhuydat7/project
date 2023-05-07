@@ -94,10 +94,14 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				%> --%>
 
 				<div class="btn-group" style="margin-left: 0.2em">
-					<button type="button" class="btn btn-info dropdown-toggle"
+					<%-- <button type="button" class="btn btn-info dropdown-toggle"
 						data-bs-toggle="dropdown" aria-expanded="false">
 						Xin chào
-						<%=khachHang.getTenDangNhap()%></button>
+						<%=khachHang.getTenDangNhap()%></button> --%>
+					<img src="<%=url%>/image/avatar/<%=khachHang.getDuongDanAnh()%>"
+						alt="Ảnh đại diện" class="btn btn-info dropdown-toggle"
+						data-bs-toggle="dropdown" aria-expanded="false"
+						style="border-radius: 50%; width: 50px; height: 40px">
 					<ul class="dropdown-menu dropdown-menu-end">
 						<li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
 						<li><a class="dropdown-item" href="#">Thông báo</a></li>

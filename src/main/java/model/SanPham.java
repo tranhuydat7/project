@@ -15,12 +15,14 @@ public class SanPham implements Comparable<SanPham> {
 	private String avatar;
 	private String cachSuDung;
 	private String chatLieu;
+	private boolean isHot = false;
 
 	public SanPham() {
 	}
 
 	public SanPham(String maSanPham, String tenSanPham, int giaGoc, int giaBan, int soLuong, String moTa,
-			DanhMuc danhMuc, Mau mauSac, KichCo kichCo, String avatar, String cachSuDung, String chatLieu) {
+			DanhMuc danhMuc, Mau mauSac, KichCo kichCo, String avatar, String cachSuDung, String chatLieu,
+			boolean isHot) {
 		super();
 		this.maSanPham = maSanPham;
 		this.tenSanPham = tenSanPham;
@@ -34,6 +36,7 @@ public class SanPham implements Comparable<SanPham> {
 		this.avatar = avatar;
 		this.cachSuDung = cachSuDung;
 		this.chatLieu = chatLieu;
+		this.isHot = isHot;
 	}
 
 	public String getMaSanPham() {
@@ -130,6 +133,14 @@ public class SanPham implements Comparable<SanPham> {
 
 	public void setChatLieu(String chatLieu) {
 		this.chatLieu = chatLieu;
+	}
+	
+	public boolean isHot() {
+		return isHot;
+	}
+
+	public void setHot(boolean isHot) {
+		this.isHot = isHot;
 	}
 
 	@Override

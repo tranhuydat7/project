@@ -43,6 +43,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				String avatar = rs.getString("avatar");
 				String cachSuDung = rs.getString("cachsudung");
 				String chatLieu = rs.getString("chatlieu");
+				boolean isHot = rs.getBoolean("isHot");
 
 				DanhMuc danhMuc = new DanhMuc();
 				danhMuc.setMaDanhMuc(maDanhMuc);
@@ -52,7 +53,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, soLuong, moTa, danhMuc, mau,
-						kichCo, avatar, cachSuDung, chatLieu);
+						kichCo, avatar, cachSuDung, chatLieu, isHot);
 
 				ketQua.add(sanPham);
 			}
@@ -92,9 +93,10 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				String maTheLoai = rs.getString("matheloai");
 				String ngonNgu = rs.getString("ngonngu");
 				String moTa = rs.getString("mota");
+				boolean isHot = rs.getBoolean("isHot");
 
 				ketQua = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, namXuatBan, moTa, null, null, null,
-						maTheLoai, ngonNgu, moTa);
+						maTheLoai, ngonNgu, moTa, isHot);
 				break;
 			}
 
@@ -114,7 +116,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 			// bước 1: kết nối đến csdl
 			Connection con = JDBCUtil.getConnection();
 			// bước 2: tạo đối tượng statement
-			String sql = "INSERT INTO sanpham (masanpham, tensanpham, giaban, giagoc, soluong, mota, madanhmuc, mamau, makichco, avatar, cachsudung, chatlieu) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO sanpham (masanpham, tensanpham, giaban, giagoc, soluong, mota, madanhmuc, mamau, makichco, avatar, cachsudung, chatlieu, isHot) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
 
 			pst.setString(1, t.getMaSanPham());
@@ -129,6 +131,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 			pst.setString(10, t.getAvatar());
 			pst.setString(11, t.getCachSuDung());
 			pst.setString(12, t.getChatLieu());
+			pst.setBoolean(13, t.isHot());
 
 			// bước 3: thực thi câu lệnh SQL
 			ketQua = pst.executeUpdate();
@@ -202,7 +205,8 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 			// bước 2: tạo đối tượng statement
 			String sql = "UPDATE `daye_shop`.`sanpham` SET `tensanpham` = ?" + ", `giaban` = ?" + ", `giagoc` = ?"
 					+ ", `soluong` = ?" + ", `mota` = ?" + ", `madanhmuc` = ?" + ", `mamau` = ?" + ", `makichco` = ?"
-					+ ", `avatar` = ?" + ", `cachsudung` = ?" + ", `chatlieu` = ?" + " WHERE (`masanpham` = ?" + ")";
+					+ ", `avatar` = ?" + ", `cachsudung` = ?" + ", `chatlieu` = ?" + ", `isHot` = ?"
+					+ " WHERE (`masanpham` = ?" + ")";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, t.getTenSanPham());
 			pst.setInt(2, t.getGiaBan());
@@ -215,7 +219,8 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 			pst.setString(9, t.getAvatar());
 			pst.setString(10, t.getCachSuDung());
 			pst.setString(11, t.getChatLieu());
-			pst.setString(12, t.getMaSanPham());
+			pst.setBoolean(12, t.isHot());
+			pst.setString(13, t.getMaSanPham());
 
 			// bước 3: thực thi câu lệnh SQL
 			ketQua = pst.executeUpdate();
@@ -290,6 +295,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				String avatar = rs.getString("avatar");
 				String cachSuDung = rs.getString("cachsudung");
 				String chatLieu = rs.getString("chatlieu");
+				boolean isHot = rs.getBoolean("isHot");
 
 				DanhMuc danhMuc = new DanhMuc();
 				danhMuc.setMaDanhMuc(maDanhMuc);
@@ -299,7 +305,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, soLuong, moTa, danhMuc, mau,
-						kichCo, avatar, cachSuDung, chatLieu);
+						kichCo, avatar, cachSuDung, chatLieu, isHot);
 
 				ketQua.add(sanPham);
 			}
@@ -367,6 +373,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				String avatar = rs.getString("avatar");
 				String cachSuDung = rs.getString("cachsudung");
 				String chatLieu = rs.getString("chatlieu");
+				boolean isHot = rs.getBoolean("isHot");
 
 				DanhMuc danhMuc = new DanhMuc();
 				danhMuc.setMaDanhMuc(maDanhMuc);
@@ -376,7 +383,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, soLuong, moTa, danhMuc, mau,
-						kichCo, avatar, cachSuDung, chatLieu);
+						kichCo, avatar, cachSuDung, chatLieu, isHot);
 
 				ketQua = sanPham;
 				break;
@@ -475,6 +482,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				String avatar = rs.getString("avatar");
 				String cachSuDung = rs.getString("cachsudung");
 				String chatLieu = rs.getString("chatlieu");
+				boolean isHot = rs.getBoolean("isHot");
 
 				DanhMuc danhMuc = new DanhMuc();
 				danhMuc.setMaDanhMuc(maDanhMuc);
@@ -484,7 +492,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, soLuong, moTa, danhMuc, mau,
-						kichCo, avatar, cachSuDung, chatLieu);
+						kichCo, avatar, cachSuDung, chatLieu, isHot);
 
 				ketQua.add(sanPham);
 			}
@@ -525,6 +533,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				String avatar = rs.getString("avatar");
 				String cachSuDung = rs.getString("cachsudung");
 				String chatLieu = rs.getString("chatlieu");
+				boolean isHot = rs.getBoolean("isHot");
 
 				DanhMuc danhMuc = new DanhMuc();
 				danhMuc.setMaDanhMuc(maDanhMuc);
@@ -534,7 +543,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, soLuong, moTa, danhMuc, mau,
-						kichCo, avatar, cachSuDung, chatLieu);
+						kichCo, avatar, cachSuDung, chatLieu, isHot);
 
 				ketQua.add(sanPham);
 			}
@@ -576,6 +585,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				String avatar = rs.getString("avatar");
 				String cachSuDung = rs.getString("cachsudung");
 				String chatLieu = rs.getString("chatlieu");
+				boolean isHot = rs.getBoolean("isHot");
 
 				DanhMuc danhMuc = new DanhMuc();
 				danhMuc.setMaDanhMuc(maDanhMuc);
@@ -585,7 +595,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 				kichCo.setMaKichCo(maKichCo);
 
 				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, soLuong, moTa, danhMuc, mau,
-						kichCo, avatar, cachSuDung, chatLieu);
+						kichCo, avatar, cachSuDung, chatLieu, isHot);
 
 				ketQua.add(sanPham);
 			}
