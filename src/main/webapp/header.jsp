@@ -29,9 +29,9 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<li class="nav-item"><a class="nav-link active"
 					aria-current="page" href="<%=url%>/index-controller">TRANG CHỦ</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=Nam">NAM</a></li>
+					href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=Nam">NAM</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=nu">NỮ</a></li>
+					href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=nu">NỮ</a></li>
 				<!-- <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false">Nữ </a> -->
@@ -42,7 +42,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 						<li><a class="dropdown-item" href="#">Áo sơ mi</a></li>
 					</ul></li> -->
 				<li class="nav-item"><a class="nav-link"
-					href="<%=url%>/san-pham-controller?hanhDong=danh-muc&tenDanhMuc=treem">TRẺ
+					href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=treem">TRẺ
 						EM</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">GIÁ TỐT</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">MỚI</a></li>

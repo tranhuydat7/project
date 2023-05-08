@@ -608,4 +608,54 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
 		}
 		return ketQua;
 	}
+	
+	public ArrayList<SanPham> selectAllSanPhamHot() {
+		ArrayList<SanPham> ketQua = new ArrayList<SanPham>();
+		try {
+			// bước 1: kết nối đến csdl
+			Connection con = JDBCUtil.getConnection();
+			// bước 2: tạo đối tượng statement
+			String sql = "SELECT * FROM sanpham where isHot = true";
+			PreparedStatement pst = con.prepareStatement(sql);
+
+			// bước 3: thực thi câu lệnh SQL
+			ResultSet rs = pst.executeQuery();
+
+			// bước 4: xử lý kết quả
+			while (rs.next()) {
+				String maSanPham = rs.getString("masanpham");
+				String tenSanPham = rs.getString("tensanpham");
+				int giaBan = rs.getInt("giaban");
+				int giaGoc = rs.getInt("giagoc");
+				int soLuong = rs.getInt("soluong");
+				String moTa = rs.getString("mota");
+				String maDanhMuc = rs.getString("madanhmuc");
+				String maMau = rs.getString("mamau");
+				String maKichCo = rs.getString("makichco");
+				String avatar = rs.getString("avatar");
+				String cachSuDung = rs.getString("cachsudung");
+				String chatLieu = rs.getString("chatlieu");
+				boolean isHot = rs.getBoolean("isHot");
+
+				DanhMuc danhMuc = new DanhMuc();
+				danhMuc.setMaDanhMuc(maDanhMuc);
+				Mau mau = new Mau();
+				mau.setMaMau(maMau);
+				KichCo kichCo = new KichCo();
+				kichCo.setMaKichCo(maKichCo);
+
+				SanPham sanPham = new SanPham(maSanPham, tenSanPham, giaGoc, giaBan, soLuong, moTa, danhMuc, mau,
+						kichCo, avatar, cachSuDung, chatLieu, isHot);
+
+				ketQua.add(sanPham);
+			}
+
+			// bước 5:
+			JDBCUtil.closeConnection(con);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketQua;
+	}
 }

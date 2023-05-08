@@ -407,7 +407,7 @@ public class DanhMucDAO implements DAOInterface<DanhMuc> {
 		}
 		return ketQua;
 	}
-	
+
 	public ArrayList<DanhMuc> selectListOrByName() {
 		ArrayList<DanhMuc> ketQua = new ArrayList<DanhMuc>();
 		try {
@@ -416,6 +416,45 @@ public class DanhMucDAO implements DAOInterface<DanhMuc> {
 			// bước 2: tạo đối tượng statement
 			String sql = "SELECT * FROM danhmuc ORDER BY tendanhmuc";
 			PreparedStatement pst = con.prepareStatement(sql);
+
+			// bước 3: thực thi câu lệnh SQL
+			ResultSet rs = pst.executeQuery();
+
+			// bước 4: xử lý kết quả
+			while (rs.next()) {
+				String maDanhMuc = rs.getString("madanhmuc");
+				String tenDanhMuc = rs.getString("tendanhmuc");
+				String danhMucCha = rs.getString("danhmucchaid");
+
+				DanhMuc dmcha = new DanhMuc();
+				dmcha.setMaDanhMuc(danhMucCha);
+
+				DanhMuc danhMuc = new DanhMuc();
+				danhMuc.setMaDanhMuc(maDanhMuc);
+				danhMuc.setTenDanhMuc(tenDanhMuc);
+				danhMuc.setDanhMucCha(dmcha);
+
+				ketQua.add(danhMuc);
+			}
+
+			// bước 5:
+			JDBCUtil.closeConnection(con);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketQua;
+	}
+
+	public ArrayList<DanhMuc> selectAllDanhMucByDanhMucCha(String danhMucCh) {
+		ArrayList<DanhMuc> ketQua = new ArrayList<DanhMuc>();
+		try {
+			// bước 1: kết nối đến csdl
+			Connection con = JDBCUtil.getConnection();
+			// bước 2: tạo đối tượng statement
+			String sql = "SELECT * FROM danhmuc where danhmucchaid=?";
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, danhMucCh);
 
 			// bước 3: thực thi câu lệnh SQL
 			ResultSet rs = pst.executeQuery();

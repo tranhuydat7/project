@@ -14,8 +14,34 @@ public class KichCoDAO implements DAOInterface<KichCo> {
 
 	@Override
 	public ArrayList<KichCo> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<KichCo> ketQua = new ArrayList<KichCo>();
+		try {
+			// bước 1: kết nối đến csdl
+			Connection con = JDBCUtil.getConnection();
+			// bước 2: tạo đối tượng statement
+			String sql = "SELECT * FROM kichco";
+			PreparedStatement pst = con.prepareStatement(sql);
+
+			// bước 3: thực thi câu lệnh SQL
+			ResultSet rs = pst.executeQuery();
+
+			// bước 4: xử lý kết quả
+			while (rs.next()) {
+				String maKichCo = rs.getString("maKichCo");
+				String tenKichCo = rs.getString("tenKichCo");
+
+				KichCo kichCo = new KichCo(maKichCo, tenKichCo);
+
+				ketQua.add(kichCo);
+			}
+
+			// bước 5:
+			JDBCUtil.closeConnection(con);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketQua;
 	}
 
 	@Override

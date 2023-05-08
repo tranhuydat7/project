@@ -7,15 +7,43 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.DanhMuc;
+import model.KichCo;
 import model.Mau;
+import model.SanPham;
 import util.JDBCUtil;
 
 public class MauDAO implements DAOInterface<Mau> {
 
 	@Override
 	public ArrayList<Mau> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Mau> ketQua = new ArrayList<Mau>();
+		try {
+			// bước 1: kết nối đến csdl
+			Connection con = JDBCUtil.getConnection();
+			// bước 2: tạo đối tượng statement
+			String sql = "SELECT * FROM mausac";
+			PreparedStatement pst = con.prepareStatement(sql);
+
+			// bước 3: thực thi câu lệnh SQL
+			ResultSet rs = pst.executeQuery();
+
+			// bước 4: xử lý kết quả
+			while (rs.next()) {
+				String maMau = rs.getString("maMau");
+				String tenMau = rs.getString("tenMau");
+
+				Mau mau = new Mau(maMau, tenMau);
+
+				ketQua.add(mau);
+			}
+
+			// bước 5:
+			JDBCUtil.closeConnection(con);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ketQua;
 	}
 
 	@Override

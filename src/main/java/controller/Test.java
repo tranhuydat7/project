@@ -26,8 +26,8 @@ public class Test {
 	public static void main(String[] args) {
 		SanPhamDAO sanPhamDAO = new SanPhamDAO();
 
-//		List<SanPham> sanPhams = sanPhamDAO.getSanPhamByDanhMucNam();
-//		System.out.println(sanPhams.toString());
+		List<SanPham> sanPhams = sanPhamDAO.selectAllSanPhamHot();
+		System.out.println(sanPhams.toString());
 
 	}
 }

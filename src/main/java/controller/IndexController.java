@@ -37,10 +37,10 @@ public class IndexController extends HttpServlet {
 		try {
 			SanPhamDAO sanPhamDAO = new SanPhamDAO();
 
-			List<SanPham> listSanPham = new ArrayList<>();
-			listSanPham = sanPhamDAO.selectAll();
+			List<SanPham> listSanPhamHot = new ArrayList<>();
+			listSanPhamHot = sanPhamDAO.selectAllSanPhamHot();
 			
-			request.setAttribute("sanPhamList", listSanPham);
+			request.setAttribute("sanPhamList", listSanPhamHot);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 
 		} catch (Exception e) {

@@ -11,6 +11,8 @@ import model.ChiTietDonHang;
 import model.DanhMuc;
 import model.DonHang;
 import model.KhachHang;
+import model.KichCo;
+import model.Mau;
 import model.SanPham;
 
 import java.io.IOException;
@@ -28,6 +30,8 @@ import database.ChiTietDonHangDAO;
 import database.DanhMucDAO;
 import database.DonHangDAO;
 import database.KhachHangDAO;
+import database.KichCoDAO;
+import database.MauDAO;
 import database.SanPhamDAO;
 
 /**
@@ -59,8 +63,8 @@ public class SanPhamController extends HttpServlet {
 			xacNhanDatHang(request, response);
 		} else if (hanhDong.equals("dat-hang-thanh-cong")) {
 			datHangThanhCong(request, response);
-		} else if (hanhDong.equals("danh-muc")) {
-			danhMuc(request, response);
+		} else if (hanhDong.equals("danh-muc-loai")) {
+			danhMucTheoLoai(request, response);
 		}
 	}
 
@@ -214,7 +218,7 @@ public class SanPhamController extends HttpServlet {
 		}
 	}
 
-	private void danhMuc(HttpServletRequest request, HttpServletResponse response) {
+	private void danhMucTheoLoai(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
@@ -223,9 +227,28 @@ public class SanPhamController extends HttpServlet {
 			String tenDanhMuc = request.getParameter("tenDanhMuc");
 			SanPhamDAO sanPhamDAO = new SanPhamDAO();
 			List<SanPham> listSanPham = sanPhamDAO.getSanPhamByDanhMuc(tenDanhMuc);
+			String baoLoi = "";
+
+			MauDAO mauDAO = new MauDAO();
+			List<Mau> listMaus = mauDAO.selectAll();
+
+			KichCoDAO kichCoDAO = new KichCoDAO();
+			List<KichCo> listKichCos = kichCoDAO.selectAll();
+
+			DanhMucDAO danhMucDAO = new DanhMucDAO();
+			List<DanhMuc> listDanhMucs = danhMucDAO.selectAllDanhMucByDanhMucCha(tenDanhMuc);
+
+			if (listSanPham.size() == 0) {
+				baoLoi += "Không có sản phẩm nào";
+				request.setAttribute("baoLoi", baoLoi);
+				System.out.println("list: " + listSanPham.toString());
+			}
 
 			request.setAttribute("sanPhamList", listSanPham);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.setAttribute("listMaus", listMaus);
+			request.setAttribute("listKichCos", listKichCos);
+			request.setAttribute("listDanhMucs", listDanhMucs);
+			request.getRequestDispatcher("indexdanhmuctheoloai.jsp").forward(request, response);
 
 		} catch (Exception e) {
 			// TODO: handle exception
