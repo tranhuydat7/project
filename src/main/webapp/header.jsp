@@ -1,3 +1,5 @@
+<%@page import="model.SanPham"%>
+<%@page import="java.util.Map"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="model.GioHang"%>
 <%@ page import="model.KhachHang"%>
@@ -10,6 +12,11 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		+ request.getContextPath();
 %>
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/myjavascipt.css" />
+<style>
+<%@ include file="/myjavascipt.css"%>
+</style>
 <!-- nav bar -->
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -71,7 +78,28 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<%
 				GioHang gioHang = (GioHang) session.getAttribute("gioHang");
 				/* String cartID = (String) session.getAttribute("cartID"); */
+				
 				%>
+				<%
+				if (gioHang == null) {
+				%>
+				<div class="ps-2 pe-2 pt-1" style="cursor: pointer">
+					<a class="notification"
+						href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang">
+						<i class="bi bi-cart" style="font-size: 1.6rem;"></i> <span
+						class="badge">0</span>
+					</a>
+				</div>
+				<%
+				} else {
+					Map<SanPham, Integer> maps = gioHang.getLists();
+					int dem=0;
+					for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
+						dem+=entry.getValue();
+						}
+				%>
+
+
 
 				<!-- Example single danger button -->
 				<%-- <%
@@ -86,9 +114,15 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				} else {
 				%> --%>
 				<div class="ps-2 pe-2 pt-1" style="cursor: pointer">
-					<a href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang"><i
-						class="bi bi-cart" style="font-size: 1.5rem;"></i></a>
+					<a class="notification"
+						href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang">
+						<i class="bi bi-cart" style="font-size: 1.6rem;"></i> <span
+						class="badge"><%=dem%></span>
+					</a>
 				</div>
+				<%
+				}
+				%>
 				<%-- <%
 				}
 				%> --%>
