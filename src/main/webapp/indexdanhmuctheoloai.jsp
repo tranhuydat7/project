@@ -120,17 +120,45 @@ a:link, a:visited {
 		<!-- end slider  -->
 
 		<!-- product -->
+		<%-- <div class="container text-center mt-3 mb-3">
+			<div class="row justify-content-center">
+				<div class="col-1">
+					<a class="btn btn-outline-warning"
+						href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=nu"
+						type="button">NỮ</a>
+				</div>
+				<div class="col-1">
+					<a class="btn btn-outline-warning"
+						href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=Nam"
+						type="button">NAM</a>
+				</div>
+				<div class="col-1">
+					<a class="btn btn-outline-warning"
+						href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=treem"
+						type="button">TRẺ EM</a>
+				</div>
+			</div>
+		</div> --%>
+
 		<div class="container text-center mt-3 mb-3">
 			<div class="row justify-content-center">
 				<div class="col-1">
-					<a class="btn btn-outline-warning" href="#" type="button">NỮ</a>
+					<a class="btn btn-outline-warning btnb_trangthai"
+						onmousedown="click_trangthai()"
+						href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=nu"
+						type="button">NỮ</a>
 				</div>
 				<div class="col-1">
-					<a class="btn btn-outline-warning" href="#" type="button">NAM</a>
+					<a class="btn btn-outline-warning btnb_trangthai"
+						onmousedown="click_trangthai()"
+						href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=Nam"
+						type="button">NAM</a>
 				</div>
 				<div class="col-1">
-					<a class="btn btn-outline-warning" href="#" type="button">TRẺ
-						EM</a>
+					<a class="btn btn-outline-warning btnb_trangthai"
+						onmousedown="click_trangthai()"
+						href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=treem"
+						type="button">TRẺ EM</a>
 				</div>
 			</div>
 		</div>
@@ -330,7 +358,8 @@ a:link, a:visited {
 			<div class="col-10">
 				<div class="row">
 					<div class="row justify-content-between mb-2">
-						<div class="col-4 "><%=listSanPham.size()%> sản phẩm
+						<div class="col-4 "><%=listSanPham.size()%>
+							sản phẩm
 						</div>
 						<div class="col-4 ">
 							<div class="row">
@@ -342,11 +371,18 @@ a:link, a:visited {
 											<span id="macDinh">Mặc định</span> <i
 												class="bi bi-chevron-down"></i>
 										</button>
+										<%
+										String tenDanhMuc = request.getAttribute("tenDanhMuc") + "";
+										%>
 										<div class="dropdown-content" id="form-div">
-											<a href="#" class="btn btnLoc formLap"
-												onclick="onclickChang()">Mặc định</a> <a href="#"
+											<a
+												href="<%=url%>/san-pham-controller?hanhDong=danh-muc-loai&tenDanhMuc=<%=tenDanhMuc%>"
+												class="btn btnLoc formLap" onclick="onclickChang()">Mặc
+												định</a> <a
+												href="<%=url%>/san-pham-controller?hanhDong=sap-xep-theo-van&tenDanhMuc=<%=tenDanhMuc%>"
 												class="btn btnLoc formLap" onclick="onclickChang()">Từ A
-												- Z</a> <a class="btn btnLoc formLap" href="#"
+												- Z</a> <a class="btn btnLoc formLap"
+												href="<%=url%>/san-pham-controller?hanhDong=sap-xep-gia-giam&tenDanhMuc=<%=tenDanhMuc%>"
 												onclick="onclickChang()">Giá giảm dần</a> <a
 												class="btn btnLoc formLap" href="#" onclick="onclickChang()">Mới
 												nhất</a>
@@ -451,6 +487,34 @@ a:link, a:visited {
 			currentValue.addEventListener("click", onclickChang)
 			function onclickChang() {
 				macDinh.innerHTML = currentValue.innerHTML
+			}
+		})
+
+		// xử lý 3 nút danh mục ở trong trang danh mục cụ thể
+		var btnb_trangthai = document.querySelectorAll("a.btnb_trangthai")
+		console.log(btnb_trangthai)
+		var dem = 0;
+		var currenV = null;
+		btnb_trangthai.forEach(function(currentValue, currentIndex, listObj) {
+			currentValue.addEventListener("mousedown", click_trangthai)
+			function click_trangthai() {
+				if (currentIndex == dem) {
+					currentValue.style.backgroundColor = "orange";
+					currentValue.style.color = "black";
+					dem = currentIndex;
+					currenV = listObj[dem];
+					console.log(currenV)
+				} else {
+					currentValue.style.backgroundColor = "orange";
+					currentValue.style.color = "black";
+					if (currenV == null) {
+						currenV = listObj[currentIndex]
+					} else {
+						console.log(currenV.removeAttribute("style"))
+						currenV = listObj[currentIndex]
+					}
+					dem = currentIndex;
+				}
 			}
 		})
 	</script>

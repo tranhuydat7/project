@@ -65,6 +65,10 @@ public class SanPhamController extends HttpServlet {
 			datHangThanhCong(request, response);
 		} else if (hanhDong.equals("danh-muc-loai")) {
 			danhMucTheoLoai(request, response);
+		} else if (hanhDong.equals("sap-xep-theo-van")) {
+			sapXepTheoVan(request, response);
+		} else if (hanhDong.equals("sap-xep-gia-giam")) {
+			sapXepTheoGiaGiam(request, response);
 		}
 	}
 
@@ -248,6 +252,7 @@ public class SanPhamController extends HttpServlet {
 			request.setAttribute("listMaus", listMaus);
 			request.setAttribute("listKichCos", listKichCos);
 			request.setAttribute("listDanhMucs", listDanhMucs);
+			request.setAttribute("tenDanhMuc", tenDanhMuc);
 			request.getRequestDispatcher("indexdanhmuctheoloai.jsp").forward(request, response);
 
 		} catch (Exception e) {
@@ -268,6 +273,68 @@ public class SanPhamController extends HttpServlet {
 
 			request.setAttribute("sanPhamList", listSanPham);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	private void sapXepTheoVan(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			String tenDanhMuc = request.getParameter("tenDanhMuc");
+			SanPhamDAO sanPhamDAO = new SanPhamDAO();
+			List<SanPham> listSanPham = sanPhamDAO.sapXepTheoVan(tenDanhMuc);
+
+			MauDAO mauDAO = new MauDAO();
+			List<Mau> listMaus = mauDAO.selectAll();
+
+			KichCoDAO kichCoDAO = new KichCoDAO();
+			List<KichCo> listKichCos = kichCoDAO.selectAll();
+
+			DanhMucDAO danhMucDAO = new DanhMucDAO();
+			List<DanhMuc> listDanhMucs = danhMucDAO.selectAllDanhMucByDanhMucCha(tenDanhMuc);
+
+			request.setAttribute("sanPhamList", listSanPham);
+			request.setAttribute("tenDanhMuc", tenDanhMuc);
+			request.setAttribute("listMaus", listMaus);
+			request.setAttribute("listKichCos", listKichCos);
+			request.setAttribute("listDanhMucs", listDanhMucs);
+			request.getRequestDispatcher("indexdanhmuctheoloai.jsp").forward(request, response);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	private void sapXepTheoGiaGiam(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			String tenDanhMuc = request.getParameter("tenDanhMuc");
+			SanPhamDAO sanPhamDAO = new SanPhamDAO();
+			List<SanPham> listSanPham = sanPhamDAO.sapXepTheogiaGiam(tenDanhMuc);
+
+			MauDAO mauDAO = new MauDAO();
+			List<Mau> listMaus = mauDAO.selectAll();
+
+			KichCoDAO kichCoDAO = new KichCoDAO();
+			List<KichCo> listKichCos = kichCoDAO.selectAll();
+
+			DanhMucDAO danhMucDAO = new DanhMucDAO();
+			List<DanhMuc> listDanhMucs = danhMucDAO.selectAllDanhMucByDanhMucCha(tenDanhMuc);
+
+			request.setAttribute("sanPhamList", listSanPham);
+			request.setAttribute("tenDanhMuc", tenDanhMuc);
+			request.setAttribute("listMaus", listMaus);
+			request.setAttribute("listKichCos", listKichCos);
+			request.setAttribute("listDanhMucs", listDanhMucs);
+			request.getRequestDispatcher("indexdanhmuctheoloai.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
