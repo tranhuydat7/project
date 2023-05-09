@@ -52,7 +52,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<input type="hidden" name="hanhDong" value="search-san-pham" /> <input
 					role="search" class="form-control me-2" type="search"
 					placeholder="Nội dung tìm kiếm" aria-label="Search"
-					name="keySearch">
+					name="keySearch" required>
 				<button class="btn btn-outline-success" type="submit">Tìm</button>
 				<%
 				Object obj = session.getAttribute("khachHang");
