@@ -272,7 +272,8 @@ public class SanPhamController extends HttpServlet {
 			List<SanPham> listSanPham = sanPhamDAO.getSanPhamByKey(keySearch);
 
 			request.setAttribute("sanPhamList", listSanPham);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.setAttribute("keySearch", keySearch);
+			request.getRequestDispatcher("/product/searchsanpham.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
