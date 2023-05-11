@@ -22,8 +22,24 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 <style>
-.red{
-color: red;
+.red {
+	color: red;
+}
+
+.field {
+	position: relative;
+}
+
+.eye {
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
 }
 </style>
 </head>
@@ -66,11 +82,12 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 												class="form-label" for="tenDangNhap">Tên đăng nhập</label>
 										</div>
 
-										<div class="form-floating mb-3">
+										<div class="form-floating mb-3 field">
 											<input type="password" id="matKhau"
-												class="form-control form-control-lg" placeholder="Mật khẩu"
+												class="form-control form-control-lg input1" placeholder="Mật khẩu"
 												name="matKhau" /> <label class="form-label" for="matKhau">Mật
-												khẩu</label>
+												khẩu </label> <i class="bi bi-eye eye eye-open hidden"></i> <i
+												class="bi bi-eye-slash eye eye-close"></i>
 										</div>
 										<div class="mb-3">
 											<span class="red"><%=baoLoi%></span>
@@ -100,7 +117,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 										</div>
 
 										<p class="mb-1 pb-lg-2 mt-2" style="color: #393f81;">
-											Bạn chưa có tài khoản? Hãy <a href="<%=url %>/user/dangky.jsp"
+											Bạn chưa có tài khoản? Hãy <a href="<%=url%>/user/dangky.jsp"
 												style="color: red;">đăng ký</a> tại đây!
 										</p>
 									</form>
@@ -113,5 +130,26 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 			</div>
 		</div>
 	</section>
+
+	<script type="text/javascript">
+		// xem mật khẩu nhập vào
+		var input = document.querySelector(".input1");
+		console.log(input)
+		var eyeClose = document.querySelector(".eye-close");
+		console.log(eyeClose)
+		var eyeOpen = document.querySelector(".eye-open");
+		console.log(eyeOpen)
+
+		eyeClose.addEventListener("click", function() {
+			eyeClose.classList.add("hidden");
+			eyeOpen.classList.remove("hidden");
+			input.type = "text";
+		})
+		eyeOpen.addEventListener("click", function() {
+			eyeOpen.classList.add("hidden");
+			eyeClose.classList.remove("hidden");
+			input.type = "password";
+		})
+	</script>
 </body>
 </html>

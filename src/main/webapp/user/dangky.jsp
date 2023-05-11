@@ -24,6 +24,26 @@
 .red {
 	color: red;
 }
+
+.field {
+	position: relative;
+}
+
+.field2 {
+	position: relative;
+}
+
+.eye {
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -108,24 +128,27 @@ String url1 = request.getScheme() + "://" + request.getServerName() + ":" + requ
 												class="form-label" for="soDienThoai">Số điện thoại</label>
 										</div>
 
-										<div class="form-floating mb-2">
+										<div class="form-floating mb-2 field">
 											<input type="password" id="matKhau"
-												class="form-control form-control-lg" placeholder="Mật khẩu"
-												name="matKhau" required="required"
+												class="form-control form-control-lg input1"
+												placeholder="Mật khẩu" name="matKhau" required="required"
 												onkeyup="kiemTraMatKhau()" /> <label class="form-label"
-												for="matKhau">Mật khẩu <span class="red">*</span></label>
+												for="matKhau">Mật khẩu <span class="red">*</span></label> <i
+												class="bi bi-eye eye eye-open hidden"></i> <i
+												class="bi bi-eye-slash eye eye-close"></i>
 										</div>
 
-										<div class="form-floating mb-2">
+										<div class="form-floating mb-2 field2">
 											<input type="password" id="matKhauNhapLai"
-												class="form-control form-control-lg"
+												class="form-control form-control-lg input2"
 												placeholder="Nhập lại mật khẩu" name="matKhauNhapLai"
-												required="required" onkeyup="kiemTraMatKhau()" /><span
-												id="msg" class="red"></span> <label class="form-label"
-												for="matKhauNhapLai">Nhập lại mật khẩu <span
-												class="red">*</span>
-											</label>
+												required="required" onkeyup="kiemTraMatKhau()" /> <label
+												class="form-label" for="matKhauNhapLai">Nhập lại mật
+												khẩu <span class="red">*</span>
+											</label> <i class="bi bi-eye eye eye-openNhapLai hidden"></i> <i
+												class="bi bi-eye-slash eye eye-closeNhapLai"></i>
 										</div>
+										<span id="msg" class="red"></span>
 
 										<div class="form-check d-flex mb-2">
 											<input class="form-check-input me-2" type="checkbox" value=""
@@ -167,6 +190,37 @@ String url1 = request.getScheme() + "://" + request.getServerName() + ":" + requ
 				return true;
 			}
 		}
+
+		// xem mật khẩu nhập vào
+		var input = document.querySelector(".input1");
+		var eyeClose = document.querySelector(".eye-close");
+		var eyeOpen = document.querySelector(".eye-open");
+
+		eyeClose.addEventListener("click", function() {
+			eyeClose.classList.add("hidden");
+			eyeOpen.classList.remove("hidden");
+			input.type = "text";
+		})
+		eyeOpen.addEventListener("click", function() {
+			eyeOpen.classList.add("hidden");
+			eyeClose.classList.remove("hidden");
+			input.type = "password";
+		})
+		// xem mật khẩu nhập lại
+		var input2 = document.querySelector(".input2");
+		var closeNhapLai = document.querySelector(".eye-closeNhapLai");
+		var openNhapLai = document.querySelector(".eye-openNhapLai");
+
+		closeNhapLai.addEventListener("click", function() {
+			closeNhapLai.classList.add("hidden");
+			openNhapLai.classList.remove("hidden");
+			input2.type = "text";
+		})
+		openNhapLai.addEventListener("click", function() {
+			openNhapLai.classList.add("hidden");
+			closeNhapLai.classList.remove("hidden");
+			input2.type = "password";
+		})
 	</script>
 
 

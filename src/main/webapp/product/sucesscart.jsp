@@ -102,7 +102,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	if (khachHang == null) {
 		String baoLoi = request.getAttribute("baoLoi") + "";
 	%>
-	<h1><%=baoLoi%></h1>
+	<h1 class="container-md"><%=baoLoi%></h1>
 	<%
 	} else {
 	%>
