@@ -34,7 +34,6 @@
 .add-to-cart .btn {
 	border-radius: 0;
 }
-
 </style>
 </head>
 <body>
@@ -119,11 +118,11 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				type="hidden" name="maSanPham" value="<%=sanPham.getMaSanPham()%>" />
 			<div class="row">
 				<div class="col-md-6 avatar">
-					<img src="<%=url%>/image/avatar/<%=sanPham.getAvatar()%>" alt="Anh product"
-						class="image-responsive" />
+					<img src="<%=url%>/image/avatar/<%=sanPham.getAvatar()%>"
+						alt="Anh product" class="image-responsive" />
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-lg-6">
 					<div class="row">
 						<div class="col-md-12">
 							<h1><%=sanPham.getTenSanPham()%></h1>
@@ -177,6 +176,21 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 								<input class="form-control" name="soLuong" type="number" min="1"
 									value="1" />
 							</div>
+							<%-- <div class="col-3 me-2">
+								<a
+									href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang&maSanPham=&countMinus=1"
+									class="btn border-btn"> <i class="bi bi-dash-lg"></i>
+								</a>
+							</div>
+							<div class="col-2 ms-3">
+								<span id="giaSanPham" class=" fs-6"></span>
+							</div>
+							<div class="col-3">
+								<a
+									href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang&maSanPham=&countPlus=1"
+									class="btn border-btn"> <i class="bi bi-plus-lg"></i>
+								</a>
+							</div>--%>
 							<div class="col-md-3">
 								<a
 									href="<%=url%>/gio-hang-controller?hanhDong=them-gio-hang&maSanPham=<%=sanPham.getMaSanPham()%>"

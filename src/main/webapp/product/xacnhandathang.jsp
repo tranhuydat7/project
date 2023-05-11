@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="model.GioHang"%>
 <%@page import="model.KhachHang"%>
 <%@page import="model.SanPham"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -90,21 +92,22 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- end header -->
 	<%
+	String baoLoi = request.getAttribute("baoLoi") + "";
 	Object obj = session.getAttribute("khachHang");
 	KhachHang khachHang = null;
 	if (obj != null)
 		khachHang = (KhachHang) obj;
 	if (khachHang == null) {
 	%>
-	<h1>Bạn chưa đăng nhập vào hệ thống. vui lòng quay lại trang chủ</h1>
+	<h1 class="container-md"><%=baoLoi%></h1>
 	<%
 	} else {
 	%>
 	<%
-	String baoLoi = request.getAttribute("baoLoi") + "";
+	/* String baoLoi = request.getAttribute("baoLoi") + "";
 	if (baoLoi == null || baoLoi.equals("null")) {
 		baoLoi = "";
-	}
+	} */
 
 	String tenDangNhap = request.getAttribute("tenDangNhap") + "";
 	if (tenDangNhap == null || tenDangNhap.equals("null")) {
@@ -138,10 +141,14 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		String soLuong = request.getAttribute("soLuong") + "";
 		String tongTien = request.getAttribute("tongTien") + "";
 		SanPham sanPham = (SanPham) request.getAttribute("sanPham");
+		GioHang gioHang = (GioHang) session.getAttribute("gioHang"); //
+		Map<SanPham, Integer> maps = gioHang.getLists();//
 		%>
-		<input type="hidden" name="hanhDong" value="dat-hang-thanh-cong" /> <input
+
+		<input type="hidden" name="hanhDong" value="dat-hang-thanh-cong" />
+		<%-- <input
 			type="hidden" name="maSanPham" value="<%=sanPham.getMaSanPham()%>" />
-		<input type="hidden" name="tongTien" value="<%=tongTien%>" />
+		<input type="hidden" name="tongTien" value="<%=tongTien%>" /> --%>
 		<div class="container">
 			<div class="row mt-3">
 				<!-- left thong tin -->
@@ -241,32 +248,73 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 						<!--  xac nhan san pham va thong tin gui -->
 						<div class="mb-3">
-							<h5>3. Xác nhận thông tin sản phẩm</h5>
+							<%
+							int tongSP = 0;
+							for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
+								tongSP += entry.getValue();
+							}
+							%>
+							<h5>
+								3. Xác nhận thông tin sản phẩm (
+								<%=tongSP%>
+								sản phẩm )
+							</h5>
 							<div class="card">
+								<%
+								int tong = 0;
+								%>
+								<%
+								for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
+									tong += entry.getKey().getGiaBan() * entry.getValue();
+								%>
 								<div class="row mt-3 ms-3 mb-3">
 									<div class="col-3">
 										<div>
 											<img
-												src="<%=url%>/image/avatar/<%=sanPham.getAvatar()%>"
+												src="<%=url%>/image/avatar/<%=entry.getKey().getAvatar()%>"
 												class="img-fluid rounded-3" alt="Shopping item"
 												style="width: 170px;">
 										</div>
 									</div>
 
 									<div class="col-7">
-										<h4 class="mb-5"><%=sanPham.getTenSanPham()%></h4>
+										<h4 class="mb-5"><%=entry.getKey().getTenSanPham()%></h4>
 										<div class="row">
 											<div class="col-2 mt-1">
 												<label class="fs-6" for="form2Example27">Số lượng:</label>
 											</div>
-											<div class="col-2">
+											<div class="col-4 ">
+												<div class="row">
+													<div class="col-3 me-2">
+														<a
+															href="<%=url%>/san-pham-controller?hanhDong=xac-nhan-dat-hang&maSanPham=<%=entry.getKey().getMaSanPham()%>&countMinus=1"
+															class="btn border-btn"> <i class="bi bi-dash-lg"></i>
+														</a>
+													</div>
+													<div class="col-2 ms-3">
+														<span id="giaSanPham" class=" fs-6"><%=entry.getValue()%></span>
+													</div>
+													<div class="col-3">
+														<a
+															href="<%=url%>/san-pham-controller?hanhDong=xac-nhan-dat-hang&maSanPham=<%=entry.getKey().getMaSanPham()%>&countPlus=1"
+															class="btn border-btn"> <i class="bi bi-plus-lg"></i>
+														</a>
+													</div>
+												</div>
+											</div>
+
+											<%-- <div class="col-2">
 												<input class="form-control fs-6" name="soLuong" id="soLuong"
 													type="number" min="1" value="<%=soLuong%>"
 													onchange="changeCount()" />
-											</div>
+											</div> --%>
 										</div>
 									</div>
 								</div>
+								<hr>
+								<%
+								}
+								%>
 							</div>
 						</div>
 						<!--  end xac nhan san pham va thong tin gui -->
@@ -275,13 +323,17 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				</div>
 				<!-- end left thong tin -->
 
+				<%-- <input type="hidden" name="maSanPham"
+					value="<%=sanPham.getMaSanPham()%>" /> <input type="hidden"
+					name="tongTien" value="<%=tong%>" /> --%>
+
 				<!-- button xac nhan right -->
 				<div class="col-lg-3">
 					<div class="card bg-primary text-white rounded-3">
 						<div class="card-body">
 							<div class="d-flex justify-content-between mb-4">
 								<p class="small mb-2 fs-4">Tổng tiền:</p>
-								<p id="tongTien" class="mb-2 fs-4"><%=tongTien%>
+								<p id="tongTien" class="mb-2 fs-4"><%=tong%>
 									VND
 								</p>
 								<%-- 	<input style="border: none; background-color: #0d6efd;"

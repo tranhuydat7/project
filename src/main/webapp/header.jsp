@@ -1,3 +1,4 @@
+<%@page import="model.DonHang"%>
 <%@page import="model.SanPham"%>
 <%@page import="java.util.Map"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
@@ -15,7 +16,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/myjavascipt.css" />
 <style>
-<%@ include file="/myjavascipt.css"%>
+<%@include file="/myjavascipt.css"%>
+
 </style>
 <!-- nav bar -->
 
@@ -78,7 +80,6 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<%
 				GioHang gioHang = (GioHang) session.getAttribute("gioHang");
 				/* String cartID = (String) session.getAttribute("cartID"); */
-				
 				%>
 				<%
 				if (gioHang == null) {
@@ -86,17 +87,31 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<div class="ps-2 pe-2 pt-1" style="cursor: pointer">
 					<a class="notification"
 						href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang">
-						<i class="bi bi-cart" style="font-size: 1.6rem;"></i> <span
+						<i class="bi bi-cart" style="font-size: 1.6rem;"></i><span
 						class="badge">0</span>
 					</a>
 				</div>
 				<%
 				} else {
-					Map<SanPham, Integer> maps = gioHang.getLists();
-					int dem=0;
-					for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
-						dem+=entry.getValue();
-						}
+				Map<SanPham, Integer> maps = gioHang.getLists();
+
+				/* DonHang donHang = (DonHang) session.getAttribute("donHang"); */
+
+				int dem = 0;
+				/* if (donHang != null) { */
+				%>
+				<%-- <div class="ps-2 pe-2 pt-1" style="cursor: pointer">
+					<a class="notification"
+						href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang">
+						<i class="bi bi-cart" style="font-size: 1.6rem;"></i> <span
+						class="badge">0</span>
+					</a>
+				</div> --%>
+				<%
+				/* } else { */
+				for (Map.Entry<SanPham, Integer> entry : maps.entrySet()) {
+					dem += entry.getValue();
+				}
 				%>
 
 
@@ -113,6 +128,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<%-- <%
 				} else {
 				%> --%>
+
 				<div class="ps-2 pe-2 pt-1" style="cursor: pointer">
 					<a class="notification"
 						href="<%=url%>/gio-hang-controller?hanhDong=chi-tiet-gio-hang">
@@ -122,6 +138,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				</div>
 				<%
 				}
+				/* } */
 				%>
 				<%-- <%
 				}

@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class DonHang {
@@ -12,6 +13,7 @@ public class DonHang {
 	private String trangThaiThanhToan;
 	private Date ngayDatHang;
 	private Date ngayGiaoHang;
+	private List<ChiTietDonHang> chiTietDonHangs;
 
 	public DonHang() {
 		// TODO Auto-generated constructor stub
@@ -91,6 +93,15 @@ public class DonHang {
 
 	public void setNgayGiaoHang(Date ngayGiaoHang) {
 		this.ngayGiaoHang = ngayGiaoHang;
+	}
+	
+
+	public List<ChiTietDonHang> getChiTietDonHangs() {
+		return chiTietDonHangs;
+	}
+
+	public void setChiTietDonHangs(List<ChiTietDonHang> chiTietDonHangs) {
+		this.chiTietDonHangs = chiTietDonHangs;
 	}
 
 	@Override
